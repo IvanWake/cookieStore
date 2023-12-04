@@ -5,7 +5,7 @@ const App = () => {
   return (
     <Fragment>
       <Header />
-      <h1>OpenShop</h1>
+      <h1>Open Shop</h1>
     </Fragment>
   );
 }
