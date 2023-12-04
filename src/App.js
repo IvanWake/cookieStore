@@ -1,6 +1,12 @@
+import React, { Fragment } from "react";
+import Header from "./components/Header/Header";
+
 const App = () => {
   return (
-    <h1>OpenShop</h1>
+    <Fragment>
+      <Header />
+      <h1>OpenShop</h1>
+    </Fragment>
   );
 }
 
