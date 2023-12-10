@@ -1,15 +1,15 @@
-import React, { Fragment } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-    faMagnifyingGlass, 
-    faSliders,
-    faCartShopping
- } from '@fortawesome/free-solid-svg-icons';
-
-import logo from '../../assets/logo.svg';
+import React, { Fragment, useState } from 'react';
+import ProfileWrapper from "./ProfileWrapper";
 import { header } from '../../store/styles.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass, faSliders,faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import logo from '../../assets/logo.svg';
 
 const Header = () => {
+    const [isProfileVisible, setIsProfileVisible] = useState(false);
+
+    const setIsProfileVisibleHandler = () => setIsProfileVisible((prevState) => !prevState);
+
     return (
         <Fragment>
             <header className={header.header}>
@@ -29,24 +29,8 @@ const Header = () => {
                         <div className={header.profile}>
                             <div className={header.hr}></div>
                             <img className={header.profileImage} src="https://avatars.githubusercontent.com/u/45458770?v=4"
-                                width="32" alt="profile" />
-                            <div className={header.profileWrapper}>
-                                <div className="profile-info">
-                                    <img className="profile-image"
-                                        src="https://avatars.githubusercontent.com/u/45458770?v=4"
-                                        width="32" alt="profile" />
-                                    <div className="info">
-                                        <div className="name">Cookie Shop</div>
-                                        <div className="email">cookieShop@mail.ru</div>
-                                    </div>
-                                </div>
-                                <div className="link"><i className="fa-solid fa-list-ul"></i> My orders</div>
-                                <div className="link"><i className="fa-solid fa-map-location-dot"></i> My addresses
-                                </div>
-                                <div className="link"><i className="fa-solid fa-gear"></i> Settings</div>
-                                <div className="link"><i className="fa-solid fa-arrow-right-from-bracket"></i> Log out
-                                </div>
-                            </div>
+                                width="32" alt="profile" onClick={setIsProfileVisibleHandler} />
+                            { isProfileVisible && <ProfileWrapper /> }
                         </div>
                     </div>
                 </div>

@@ -10,6 +10,9 @@ export const header = {
     button: 'p-2 px-4 rounded-lg bg-[#ff9f5a] text-white border-none transition ease-in duration-150 active:scale-95 hover:bg-[#ff9f5a80]',
     profile: 'relative flex items-center gap-4',
     profileImage: 'cursor-pointer rounded-full',
-    profileWrapper: 'z-100 hidden absolute top-12 right-0 h-auto w-auto min-w-300 bg-[#ffcca7] shadow-md rounded-bl-lg rounded-tr-lg pb-4',
 };
+
+export const profile = {
+    profileWrapper: 'z-100 absolute top-12 right-0 h-auto w-auto min-w-300 bg-[#ffcca7] shadow-md rounded-bl-lg rounded-tr-lg pb-4',
+}
 
