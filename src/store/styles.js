@@ -8,7 +8,7 @@ export const header = {
     searchInput: 'text-sm bg-none border-none focus:outline-none',
     button: 'flex items-center gap-2 py-2 px-4 rounded-[0.6rem] bg-[#ff9f5a] max-h-[32px] text-white border-none transition ease-in duration-150 active:scale-95 hover:bg-[#ff9f5a80]',
     profile: 'relative flex items-center gap-4',
-    profileImage: 'cursor-pointer rounded-full',
+    profileImage: 'cursor-pointer rounded-full'
 };
 
 export const profile = {
@@ -19,5 +19,9 @@ export const profile = {
     email: 'text-black/70',
     link: 'flex justify-start items-center gap-4 p-2 px-4 m-0 transition-all duration-300 ease-in-out hover:bg-black/10',
     i: 'w-4 text-black/60'
-}
+};
 
+export const notFound = {
+    div: 'flex flex-col justify-center items-center absolute inset-x-0 inset-y-0 gap-0',
+    h1: 'font-medium text-[6em]'
+};
