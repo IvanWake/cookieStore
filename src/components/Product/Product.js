@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import product from "../../assets/american.png";
 
-const Product = () => {
+const Product = (props) => {
     return (
         <div className={products.product}>
             <div className={products.productCol}>
@@ -17,7 +17,7 @@ const Product = () => {
             <div className={products.productCol}>
                 <div className={products.productDesc}>
                     <div className={products.productDescHeader}>
-                        <div className={products.productName}>American</div>
+                        <div className={products.productName}>{props.name}</div>
                         <div className={products.productPrice}>$ 0.98</div>
                     </div>
                     <div className={products.productDescText}>
