@@ -1,5 +1,5 @@
 export const header = {
-    header: 'z-150 flex fixed top-0 left-0 right-0 bg-[#ffcca7]',
+    header: 'z-50 flex fixed top-0 left-0 right-0 bg-[#ffcca7]',
     headerContainer: 'flex items-center justify-between mx-auto p-4 w-full max-w-[1400px]',
     headerDiv: 'flex items-center gap-4 max-h-[32px] ',
     hr: 'w-px h-[20px] bg-[#ff9f5a]',
@@ -12,7 +12,7 @@ export const header = {
 };
 
 export const profile = {
-    profileWrapper: 'z-100 absolute top-12 right-0 h-auto w-auto min-w-[300px] bg-[#ffcca7] shadow-md rounded-b-[0.8rem] pb-4',
+    profileWrapper: 'z-50 absolute top-12 right-0 h-auto w-auto min-w-[300px] bg-[#ffcca7] shadow-md rounded-b-[0.8rem] pb-4',
     profileInfo: 'flex items-center rounded-md gap-2 p-4 m-2 bg-black/10 hover:bg-black/15',
     profileImage: 'cursor-pointer rounded-full',
     info: 'flex flex-col',
@@ -28,7 +28,7 @@ export const notFound = {
 };
 
 export const main = {
-    main: 'flex relative mx-auto my-0 max-w-[1400px] p-4 pt-[5rem]',
+    main: 'z-10 flex relative mx-auto my-0 max-w-[1400px] p-4 mt-[4rem]',
 };
 
 export const products = {
@@ -47,7 +47,7 @@ export const products = {
 
 export const category = {
     categoryName: 'font-extrabold text-[2.5rem]',
-    categoryDiv: 'flex sticky top-[4rem] items-center gap-4 bg-[#FFE4D0] pt-4 pb-2',
+    categoryDiv: 'flex sticky top-[4rem] items-center gap-4 bg-[#FFE4D0] pt-4 pb-2 cursor-pointer',
     category: 'flex justify-center items-center w-[8.25rem] h-8 rounded-[0.8rem] border-2 border-black transition-all duration-300 ease-in-out font-bold hover:text-black hover:bg-white hover:border-white hover:border-2 active:scale-95',
     categorySelected: 'text-black bg-white border-2 border-white'
 }

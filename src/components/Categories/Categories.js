@@ -1,10 +1,11 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { category } from "../../store/styles";
+import { useProducts } from "../../store/products-store";
 import Category from "./Category";
 
 const Categories = () => {
-
-    const [categoryName, setCategoryName] = useState('All');
+    const categoryState = useProducts((state) => state.changeCategory);
+    const selectedCategory = useProducts((state) => state.selectedCategory);
 
     const categories = [
         {
@@ -29,11 +30,11 @@ const Categories = () => {
         },
     ];
 
-    const returnCategoryNameHandler = (categoryName) => { setCategoryName(categoryName) }
+    const returnCategoryNameHandler = (categoryName) => { categoryState(categoryName) };
 
     return (
         <Fragment>
-            <div className={category.categoryName}>{categoryName}</div>
+            <div className={category.categoryName}>{selectedCategory}</div>
             <div className={category.categoryDiv}>
                 {
                     categories.map((category) => (
@@ -41,7 +42,7 @@ const Categories = () => {
                             key={category.id}
                             name={category.name}
                             onChangeCategory={returnCategoryNameHandler}
-                            selectedCategory={categoryName}
+                            selectedCategory={selectedCategory}
                         />
                     ))
                 }
