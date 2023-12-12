@@ -2,7 +2,9 @@ import { main } from '../../store/styles';
 const Main = (props) => {
     return (
         <main className={main.main}>
-            {props.children}
+            <div>
+                {props.children}
+            </div>
         </main>
     );
 }

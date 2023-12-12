@@ -27,7 +27,9 @@ export const notFound = {
     h1: 'font-medium text-[6em]'
 };
 
-export const main = { main: 'flex relative mx-auto my-0 max-w-[1440px] p-4 pt-[5rem]' };
+export const main = {
+    main: 'flex relative mx-auto my-0 max-w-[1400px] p-4 pt-[5rem]',
+};
 
 export const products = {
     productList: 'flex flex-wrap gap-4 mt-4',
