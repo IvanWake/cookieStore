@@ -28,7 +28,7 @@ export const notFound = {
 };
 
 export const main = {
-    main: 'flex relative mx-auto my-0 max-w-[1400px] p-4 pt-[5rem]',
+    main: 'flex relative mx-auto my-0 max-w-[1400px] p-4 mt-[4rem]',
 };
 
 export const products = {
