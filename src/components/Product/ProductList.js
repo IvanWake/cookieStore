@@ -23,6 +23,22 @@ const ProductList = () => {
             category: 'Sweets',
             name: 'Moti2',
         },
+        {
+            category: 'Ice cream',
+            name: 'Chocolate',
+        },
+        {
+            category: 'Bakery',
+            name: 'Cake',
+        },
+        {
+            category: 'Ice cream',
+            name: 'Strawberry',
+        },
+        {
+            category: 'Bakery',
+            name: 'Donut',
+        },
     ];
 
     let productsListFiltered = productsList.filter((product) =>
