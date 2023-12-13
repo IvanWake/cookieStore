@@ -31,6 +31,14 @@ const ProductList = () => {
             category: 'Bakery',
             name: 'Cake',
         },
+        {
+            category: 'Ice cream',
+            name: 'Strawberry',
+        },
+        {
+            category: 'Bakery',
+            name: 'Donut',
+        },
     ];
 
     let productsListFiltered = productsList.filter((product) =>
