@@ -24,10 +24,6 @@ const ProductList = () => {
             name: 'Moti2',
         },
         {
-            category: 'Ice cream',
-            name: 'Chocolate',
-        },
-        {
             category: 'Bakery',
             name: 'Cake',
         },
