@@ -9,32 +9,35 @@ const ProductList = () => {
     const productsList = [
         {
             category: 'Cookies',
-            name: 'American',
+            name: 'Liege Waffle',
+            price: '1.00',
+            description: 'Delicate, crispy waffle crafted using the traditional Belgian recipe, adorned with sugar crystals.'
         },
         {
             category: 'Cookies',
-            name: 'American1',
+            name: 'Chocolate Liege Waffle',
+            price: '1.25',
+            description: 'Indulge in the rich goodness of a chocolate-infused Liege waffle, a delightful treat with a crispy exterior and a sumptuous Belgian touch.'
         },
         {
-            category: 'Sweets',
-            name: 'Moti1',
+            category: 'Cookies',
+            name: 'Raspberry Liege Waffle',
+            price: '1.50',
+            description: 'A Liege waffle covered in luscious raspberry glaze and topped with dried raspberries for an exquisite fruity delight.'
         },
         {
-            category: 'Sweets',
-            name: 'Moti2',
-        },
-        {
-            category: 'Bakery',
-            name: 'Cake',
-        },
-        {
-            category: 'Ice cream',
-            name: 'Strawberry',
+            category: 'Cookies',
+            name: 'Pistachio Liege Waffle',
+            price: '1.55',
+            description: 'Savor the indulgence of a Liege waffle adorned with pistachio glaze and sprinkled with chocolate flakes for a delightful fusion of flavors.'
         },
         {
             category: 'Bakery',
-            name: 'Donut',
+            name: 'Pon de Ring Pistachio',
+            price: '2.00',
+            description: 'Experience the unique Pon de Ring Donut with a pistachio twist, featuring a delightful pistachio glaze for a nutty and sweet sensation.'
         },
+          
     ];
 
     let productsListFiltered = productsList.filter((product) =>
@@ -51,6 +54,8 @@ const ProductList = () => {
                     <Product
                         key={'key1'}
                         name={product.name}
+                        price={product.price}
+                        description={product.description}
                     />
                 ))
             }

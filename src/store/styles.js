@@ -33,13 +33,13 @@ export const main = {
 
 export const products = {
     productList: 'flex flex-wrap gap-4 mt-4',
-    product: 'flex gap-6 bg-[#fff] p-6 rounded-[0.8rem]',
+    product: 'flex gap-6 bg-[#fff] p-6 rounded-[0.8rem] min-ws-[380px]',
     productCol: 'flex flex-col justify-between gap-4',
     productDesc: 'flex flex-col gap-4',
     productDescHeader: 'flex justify-between',
     productName: 'font-semibold',
-    productPrice: 'font-semibold text-[#D99C70]',
-    productDescText: 'text-black/80 overflow-hidden max-w-[200px] break-words line-clamp-[2]',
+    productPrice: 'font-semibold text-[#D99C70] pl-2',
+    productDescText: 'text-black/80 overflow-hidden max-w-[215px] break-words line-clamp-[2]',
     productBtn: 'rounded-[0.4rem] p-2 border-solid border-2 border-[#E6D9C9] bg-none text-[#D99C70] font-medium',
     productCount: 'flex items-center justify-around gap-2 rounded-[0.4rem] p-2 bg-[#f6f6f6]',
     editCount: 'flex justify-center items-center w-4 h-4 rounded-1/2 transition-all duration-300 ease-in-out',
