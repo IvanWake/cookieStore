@@ -1,4 +1,5 @@
-import { main } from '../../store/styles';
+import {main} from '../../store/styles';
+
 const Main = (props) => {
     return (
         <main className={main.main}>

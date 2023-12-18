@@ -40,14 +40,15 @@ export const products = {
     productName: 'font-semibold',
     productPrice: 'font-semibold text-[#D99C70] pl-2',
     productDescText: 'text-black/80 overflow-hidden max-w-[215px] break-words line-clamp-[2]',
-    productBtn: 'rounded-[0.4rem] p-2 border-solid border-2 border-[#E6D9C9] bg-none text-[#D99C70] font-medium',
+    productBtn: 'rounded-[0.4rem] p-2 border-solid border-2 border-[#E6D9C9] bg-none text-[#D99C70] font-medium hover:bg-[#FF9F5A] hover:text-white transition-all duration-300 ease-in-out',
+    productAdded: 'rounded-[0.4rem] p-2 border-solid border-2 border-[#E6D9C9] bg-[#FF9F5A] text- font-medium text-white',
     productCount: 'flex items-center justify-around gap-2 rounded-[0.4rem] p-2 bg-[#f6f6f6]',
     editCount: 'flex justify-center items-center w-4 h-4 rounded-1/2 transition-all duration-300 ease-in-out',
 };
 
 export const category = {
     categoryName: 'font-extrabold text-[2.5rem]',
-    categoryDiv: 'flex sticky top-[4rem] items-center gap-4 bg-[#FFE4D0] pt-4 pb-2 cursor-pointer',
-    category: 'flex justify-center items-center w-[8.25rem] h-8 rounded-[0.8rem] border-2 border-black transition-all duration-300 ease-in-out font-bold hover:text-black hover:bg-white hover:border-white hover:border-2 active:scale-95',
+    categoryDiv: 'flex sticky top-[4rem] items-center gap-4 bg-[#FFE4D0] pt-4 pb-2 ',
+    category: 'flex justify-center items-center w-[8.25rem] h-8 cursor-pointer rounded-[0.8rem] border-2 border-black transition-all duration-300 ease-in-out font-bold hover:text-black hover:bg-white hover:border-white hover:border-2 active:scale-95',
     categorySelected: 'text-black bg-white border-2 border-white'
 }

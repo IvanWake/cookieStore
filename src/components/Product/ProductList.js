@@ -5,7 +5,6 @@ import Product from "./Product";
 
 const ProductList = () => {
     const category = useProducts(state => state.selectedCategory);
-
     const productsList = [
         {
             category: 'Cookies',
@@ -37,11 +36,12 @@ const ProductList = () => {
             price: '2.00',
             description: 'Experience the unique Pon de Ring Donut with a pistachio twist, featuring a delightful pistachio glaze for a nutty and sweet sensation.'
         },
-          
+
     ];
 
+
     let productsListFiltered = productsList.filter((product) =>
-        product.category === category)
+        product.category === category);
 
     if (category === 'All') {
         productsListFiltered = productsList;
@@ -52,13 +52,15 @@ const ProductList = () => {
             {
                 productsListFiltered.map(product => (
                     <Product
-                        key={'key1'}
+                        key={'pId ' + Math.random()}
+                        id={'pId ' + Math.random()}
                         name={product.name}
                         price={product.price}
                         description={product.description}
                     />
                 ))
             }
+
         </div>
     );
 }

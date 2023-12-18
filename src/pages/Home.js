@@ -7,11 +7,12 @@ import Categories from "../components/Categories/Categories";
 const Home = () => {
     return (
         <Fragment>
-            <Header/>
+            <Header />
             <Main>
-                <Categories/>
-                <ProductList />
+                    <Categories/>
+                    <ProductList/>
             </Main>
+
         </Fragment>
     );
 }
