@@ -29,6 +29,7 @@ export const notFound = {
 
 export const main = {
     main: 'z-10 flex relative mx-auto my-0 max-w-[1400px] p-4 mt-[4rem]',
+    div: 'flex flex-col'
 };
 
 export const products = {

@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import { useCart } from '../../store/cart-store';
 import ProfileWrapper from "./ProfileWrapper";
 import { header } from '../../store/styles.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +9,11 @@ import logo from '../../assets/logo.svg';
 const Header = (props) => {
     const [isProfileVisible, setIsProfileVisible] = useState(false);
 
-    const setIsProfileVisibleHandler = () => setIsProfileVisible((prevState) => !prevState);
+    const setIsProfileVisibleHandler = () => setIsProfileVisible(prevState => !prevState);
+
+    const setCartVisibility = useCart(state => state.changeVisibilty);
+    const setIsCartVisible = useCart(state => state.isCartVisible);
+    const setCartVisibilityHandler = () => setCartVisibility(!setIsCartVisible);
 
     return (
         <Fragment>
@@ -25,9 +30,7 @@ const Header = (props) => {
                     </div>
 
                     <div className={header.headerDiv}>
-                        <button className={header.button} id="cart"><FontAwesomeIcon
-                            icon={faCartShopping}/> Cart
-                        </button>
+                        <button className={header.button} id="cart" onClick={setCartVisibilityHandler}><FontAwesomeIcon icon={faCartShopping}/> Cart</button>
                         <div className={header.profile}>
                             <div className={header.hr}></div>
                             <img className={header.profileImage}
