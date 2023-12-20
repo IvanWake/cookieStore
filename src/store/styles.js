@@ -28,13 +28,13 @@ export const notFound = {
 };
 
 export const main = {
-    main: 'z-10 flex relative mx-auto my-0 max-w-[1400px] p-4 mt-[4rem]',
-    div: 'flex flex-col'
+    main: 'z-10 flex relative justify-between mx-auto my-0 max-w-[1400px] p-4 mt-[4rem]',
+    div: 'flex flex-col mr-4'
 };
 
 export const products = {
     productList: 'flex flex-wrap gap-4 mt-4',
-    product: 'flex gap-6 bg-[#fff] p-6 rounded-[0.8rem] min-ws-[380px]',
+    product: 'flex gap-6 bg-[#fff] p-6 rounded-[0.8rem] min-w-[380px]',
     productCol: 'flex flex-col justify-between gap-4',
     productDesc: 'flex flex-col gap-4',
     productDescHeader: 'flex justify-between',
@@ -50,6 +50,27 @@ export const products = {
 export const category = {
     categoryName: 'font-extrabold text-[2.5rem]',
     categoryDiv: 'flex sticky top-[4rem] items-center gap-4 bg-[#FFE4D0] pt-4 pb-2 ',
-    category: 'flex justify-center items-center w-[8.25rem] h-8 cursor-pointer rounded-[0.8rem] border-2 border-black transition-all duration-300 ease-in-out font-bold hover:text-black hover:bg-white hover:border-white hover:border-2 active:scale-95',
+    category: 'flex justify-center items-center w-[8.9rem] h-8 cursor-pointer rounded-[0.4rem] border-2 border-black transition-all duration-300 ease-in-out font-bold hover:text-black hover:bg-white hover:border-white hover:border-2 active:scale-95',
     categorySelected: 'text-black bg-white border-2 border-white'
+};
+
+export const cart = {
+    wrapper: 'flex flex-col sticky top-[5rem] h-[85vh] min-w-[400px] bg-white rounded-[0.8rem] p-4',
+    cart: 'h-full flex flex-col justify-between relative',
+    header: 'text-[2.5rem] font-bold',
+    method: 'flex gap-4 pt-2 pb-4 items-center shadow-[0px_8px_16px_-8px_#00000020]',
+    button: 'w-[50%] p-2 border border-black rounded-[0.4rem] transition-all duration-300 ease-in-out hover:border-[#FF9F5A] hover:bg-[#FF9F5A] hover:text-white active:scale-95',
+    productList: 'flex flex-col gap-4 min-h-[auto] h-full overflow-y-scroll',
+    product: 'flex items-center justify-between p-4 rounded-[0.4rem] border border-black',
+    productInfo: 'flex min-w-[100%] gap-4',
+    description: 'flex flex-col w-[100%] justify-between',
+    productHeader: 'flex justify-between items-center',
+    name: 'font-bold flex max-w-[190px] truncate',
+    counterWrapper: 'flex justify-between',
+    price: 'flex items-center',
+    productCount: 'flex items-center justify-around gap-2 rounded-[0.4rem] p-2 bg-[#efefef]',
+    editCount: 'flex justify-center items-center w-4 h-4 rounded-1/2 transition-all duration-300 ease-in-out',
+    footer: 'bg-white flex flex-col pt-4 gap-4 shadow-[0px_-8px_16px_-8px_#00000020]',
+    total: 'flex justify-between font-semibold text-[1.2em]',
+    footerButton: 'border-none px-4 py-4 text-[1.2em] font-medium text-white bg-[#FF9F5A] rounded-[0.4rem]',
 }

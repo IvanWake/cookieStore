@@ -5,6 +5,7 @@ import Product from "./Product";
 
 const ProductList = () => {
     const category = useProducts(state => state.selectedCategory);
+    
     const productsList = [
         {
             category: 'Cookies',
