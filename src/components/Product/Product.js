@@ -80,12 +80,10 @@ const Product = (props) => {
                 <div className={products.productDesc}>
                     <div className={products.productDescHeader}>
                         <div className={products.productName}>{props.name}</div>
-                        <div className={products.productPrice}>$ 0.98</div>
+                        <div className={products.productPrice}>$ {props.price}</div>
                     </div>
                     <div className={products.productDescText}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Amet mauris commodo quis imperdiet massa
-                        tincidunt. Sed id semper risus in hendrerit.
+                        {props.description}
                     </div>
                 </div>
 
