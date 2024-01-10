@@ -18,7 +18,11 @@ html {
 
 body {
   margin: 0;
-
   background-color: #FFE4D0;
   font-family: 'Inter Tight', sans-serif;
+}
+
+button {
+  outline: none;
+  border: none;
 }
