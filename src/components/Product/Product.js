@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { fetchLocalProducts } from '../../service/get-products';
+import { setProducts } from '../../service/set-products';
 import { products } from "../../store/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +11,10 @@ const Product = (props) => {
     const [btnContent, setBtnContent] = useState('Add to Cart');
     const [productCounter, setProductCounter] = useState(1);
 
-    const setStylesBtnHandler = () => {
+    const addToCartHandler = () => {
+
+        // set styles and content for Button
+
         if (btnStyles === products.productAdded) {
             return;
         }
@@ -17,35 +22,19 @@ const Product = (props) => {
         setBtnStyles(products.productAdded);
         setBtnContent('Added to Cart');
 
-        const storageLength = localStorage.length;
-        let productsList = [];
+
+        // Add to Cart (localStorage)
+        const productsList = fetchLocalProducts().productsCart; 
+
         const addingItem = {
             id: props.id,
             name: props.name,
             amount: productCounter,
+            price: props.price,
+            desc: props.description,
         }
 
-        for (let i = 0; i < storageLength; i++) {
-            productsList.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-        }
-
-        const existingProducts = productsList.findIndex(item => {
-            return item.name === addingItem.name;
-        })
-
-        let existingProduct = productsList[existingProducts];
-        let updatedProduct;
-
-        if (existingProduct) {
-            updatedProduct = {
-                ...existingProduct,
-                amount: existingProduct.amount + productCounter
-            }
-            localStorage.setItem(existingProduct.id, JSON.stringify(updatedProduct));
-        } else {
-            localStorage.setItem(props.id, JSON.stringify(addingItem));
-        }
-
+        setProducts(productsList, addingItem, props.id, productCounter)
     }
 
     const increaseCounterHandler = () => {
@@ -87,7 +76,7 @@ const Product = (props) => {
                     </div>
                 </div>
 
-                <button className={btnStyles} onClick={setStylesBtnHandler}>{btnContent}</button>
+                <button className={btnStyles} onClick={addToCartHandler}>{btnContent}</button>
             </div>
         </div>
     );

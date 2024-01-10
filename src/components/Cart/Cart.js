@@ -1,24 +1,27 @@
-import { useState, useEffect } from "react";
-import { cart } from "../../store/styles";
-import CartProduct from "./CartProduct";
+import { useState, useEffect, useCallback } from "react";
 import { useCart } from "../../store/cart-store";
+import { cart } from "../../store/styles";
+import { fetchLocalProducts } from "../../service/get-products";
+import CartProduct from "./CartProduct";
 
 const Cart = () => {
     const [cartProducts, setCartProducts] = useState();
     const productInStorage = useCart(state => state.cartProductsLocal);
+    const cartProductsLocalHandler = useCart(state => state.cartProductsLocalHandler);
 
-    const fetchLocalProducts = () => {
-        const storageLength = localStorage.length;
-        let productsCart = [];
-        for (let i = 0; i < storageLength; i++) {
-            productsCart.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-        }
-        setCartProducts(productsCart);
+    const fetchProductsLocal = () => {
+        const productsList = fetchLocalProducts().productsCart;
+        setCartProducts(productsList);
     }
 
+    const setCartProductsLocalHandler = useCallback(() => {
+        cartProductsLocalHandler(cartProducts)
+    }, [cartProductsLocalHandler, cartProducts])
+
     useEffect(() => {
-        fetchLocalProducts();
-    }, [productInStorage]);
+        fetchProductsLocal();
+        setCartProductsLocalHandler();
+    }, [productInStorage, setCartProductsLocalHandler]);
 
     return (
         <div className={cart.wrapper}>
@@ -30,7 +33,7 @@ const Cart = () => {
                 </div>
                 <div className={cart.productList}>
                     {
-                        cartProducts?.map(product => (
+                        productInStorage?.map(product => (
                             <CartProduct
                                 key={'cpId ' + Math.random()}
                                 id={'cpId ' + Math.random()}

@@ -6,7 +6,7 @@ export const useCart = create(set => ({
         return { isCartVisible: stateVisibility };
     }),
     cartProductsLocal: null,
-    cartProductsLocalHandler: (stateProducts) => set(state => {
-        return { cartProductsLocal: stateProducts};
-    }),
+    cartProductsLocalHandler: (products) => set(state => {
+        return { cartProductsLocal: products };
+    })
 }))
