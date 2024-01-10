@@ -37,7 +37,7 @@ const CartProduct = (props) => {
                             <button className={cart.editCount} onClick={decreaseCounterHandler}>
                                 <FontAwesomeIcon icon={faMinus} />
                             </button>
-                            <div className="counter">{productCounter}</div>
+                            <div className="counter">{props.amount}</div>
                             <button className={cart.editCount} onClick={increaseCounterHandler}>
                                 <FontAwesomeIcon icon={faPlus} />
                             </button>
