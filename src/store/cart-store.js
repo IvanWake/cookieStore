@@ -8,5 +8,9 @@ export const useCart = create(set => ({
     cartProductsLocal: null,
     cartProductsLocalHandler: (products) => set(state => {
         return { cartProductsLocal: products };
+    }),
+    totalPrice: 0,
+    setTotalPrice: (total) => set(state => {
+        return { totalPrice: total }
     })
 }))

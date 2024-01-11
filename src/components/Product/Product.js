@@ -23,7 +23,7 @@ const Product = (props) => {
         setBtnContent('Added to Cart');
 
 
-        // Add to Cart (localStorage)
+        // Get Products (localStorage)
         const productsList = fetchLocalProducts().productsCart; 
 
         const addingItem = {
@@ -32,7 +32,10 @@ const Product = (props) => {
             amount: productCounter,
             price: props.price,
             desc: props.description,
+            total: props.price * productCounter,
         }
+        
+        //Set Product
 
         setProducts(productsList, addingItem, props.id, productCounter)
     }

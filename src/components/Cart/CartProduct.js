@@ -1,26 +1,26 @@
 import { useState } from 'react';
+import { fetchLocalProducts } from '../../service/get-products';
+import { setProducts } from '../../service/set-products';
 import { cart } from "../../store/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import product from "../../assets/american.png";
 
 const CartProduct = (props) => {
+    const amount = props.amount;
 
-    const [productCounter, setProductCounter] = useState(1);
-
-    const increaseCounterHandler = () => {
-        if (productCounter === 10) {
-            return;
-        }
-        setProductCounter(prevState => prevState + 1);
+    const addingItem = {
+        id: props.id,
+        name: props.name,
+        amount: props.amount,
+        price: props.price,
+        desc: props.description,
+        total: props.price * props.amount,
     }
 
-    const decreaseCounterHandler = () => {
-        if (productCounter === 1) {
-            return;
-        }
-        setProductCounter(prevState => prevState - 1);
-    }
+    const increaseCounterHandler = () => props.onIncrease(addingItem);
+
+    const decreaseCounterHandler = () => props.onDecrease(addingItem);
 
     return (
         <div className={cart.product}>
