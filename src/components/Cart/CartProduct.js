@@ -1,13 +1,9 @@
-import { useState } from 'react';
-import { fetchLocalProducts } from '../../service/get-products';
-import { setProducts } from '../../service/set-products';
 import { cart } from "../../store/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 import product from "../../assets/american.png";
 
 const CartProduct = (props) => {
-    const amount = props.amount;
 
     const addingItem = {
         id: props.id,
@@ -18,9 +14,14 @@ const CartProduct = (props) => {
         total: props.price * props.amount,
     }
 
+    // Counter and DeleteHandler
+
     const increaseCounterHandler = () => props.onIncrease(addingItem);
 
     const decreaseCounterHandler = () => props.onDecrease(addingItem);
+
+    const removeProductHandler = () => props.onRemoveProduct(addingItem);
+
 
     return (
         <div className={cart.product}>
@@ -29,7 +30,7 @@ const CartProduct = (props) => {
                 <div className={cart.description}>
                     <div className={cart.productHeader}>
                         <div className={cart.name}>{props.name}</div>
-                        <div><FontAwesomeIcon icon={faXmark} /></div>
+                        <div onClick={removeProductHandler} className={cart.xMark}><FontAwesomeIcon icon={faXmark} /></div>
                     </div>
                     <div className={cart.counterWrapper}>
                         <div className={cart.price}>$ {props.price}/piece</div>

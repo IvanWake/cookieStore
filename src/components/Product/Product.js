@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { fetchLocalProducts } from '../../service/get-products';
+import { useCart } from "../../store/cart-store";
 import { setProducts } from '../../service/set-products';
 import { products } from "../../store/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +11,7 @@ const Product = (props) => {
     const [btnStyles, setBtnStyles] = useState(products.productBtn);
     const [btnContent, setBtnContent] = useState('Add to Cart');
     const [productCounter, setProductCounter] = useState(1);
+    const cartProductsLocal = useCart(state => state.cartProductsLocalHandler);
 
     const addToCartHandler = () => {
 
@@ -36,8 +38,8 @@ const Product = (props) => {
         }
         
         //Set Product
-
-        setProducts(productsList, addingItem, props.id, productCounter)
+        setProducts(productsList, addingItem, props.id, productCounter);
+        cartProductsLocal(productsList);
     }
 
     const increaseCounterHandler = () => {

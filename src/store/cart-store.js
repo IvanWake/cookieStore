@@ -5,12 +5,8 @@ export const useCart = create(set => ({
     changeVisibilty: (stateVisibility) => set(state => {
         return { isCartVisible: stateVisibility };
     }),
-    cartProductsLocal: null,
+    cartProductsLocal: [],
     cartProductsLocalHandler: (products) => set(state => {
-        return { cartProductsLocal: products };
+        return { cartProductsLocal:  products }
     }),
-    totalPrice: 0,
-    setTotalPrice: (total) => set(state => {
-        return { totalPrice: total }
-    })
 }))
