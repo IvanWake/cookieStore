@@ -34,6 +34,7 @@ const CartProductsList = (props) => {
                     <CartProduct
                         key={product.id}
                         id={product.id}
+                        image={product.image}
                         name={product.name}
                         price={product.price}
                         desc={product.desc}

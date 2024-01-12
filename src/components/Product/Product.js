@@ -23,7 +23,6 @@ const Product = (props) => {
         setBtnStyles(products.productAdded);
         setBtnContent('Added to Cart');
 
-
         // Get Products (localStorage)
         const productsList = fetchLocalProducts().productsCart; 
 
@@ -68,8 +67,7 @@ const Product = (props) => {
                         <FontAwesomeIcon icon={faMinus}/>
                     </button>
                     <div className="counter">{productCounter}</div>
-                    <button className={products.editCount} onClick={increaseCounterHandler}><FontAwesomeIcon
-                        icon={faPlus}/>
+                    <button className={products.editCount} onClick={increaseCounterHandler}><FontAwesomeIcon icon={faPlus}/>
                     </button>
                 </div>
             </div>
