@@ -73,4 +73,5 @@ export const cart = {
     footer: 'bg-white flex flex-col pt-4 gap-4 shadow-[0px_-8px_16px_-8px_#00000020]',
     total: 'flex justify-between font-semibold text-[1.2em]',
     footerButton: 'border-none px-4 py-4 text-[1.2em] font-medium text-white bg-[#FF9F5A] rounded-[0.4rem]',
+    xMark: 'hover: cursor-pointer'
 }

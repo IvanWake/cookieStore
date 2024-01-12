@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { fetchLocalProducts } from '../../service/get-products';
+import { useCart } from "../../store/cart-store";
 import { setProducts } from '../../service/set-products';
 import { products } from "../../store/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,6 +10,7 @@ const Product = (props) => {
     const [btnStyles, setBtnStyles] = useState(products.productBtn);
     const [btnContent, setBtnContent] = useState('Add to Cart');
     const [productCounter, setProductCounter] = useState(1);
+    const cartProductsLocal = useCart(state => state.cartProductsLocalHandler);
 
     const addToCartHandler = () => {
 
@@ -22,7 +24,7 @@ const Product = (props) => {
         setBtnContent('Added to Cart');
 
 
-        // Add to Cart (localStorage)
+        // Get Products (localStorage)
         const productsList = fetchLocalProducts().productsCart; 
 
         const addingItem = {
@@ -32,10 +34,11 @@ const Product = (props) => {
             amount: productCounter,
             price: props.price,
             desc: props.description,
+            total: props.price * productCounter,
         }
-
+        //Set Product
         setProducts(productsList, addingItem, props.id, productCounter);
-
+        cartProductsLocal(productsList);
         setTimeout(function() {
             setBtnContent('Add to Cart');
             setBtnStyles(products.productBtn);

@@ -6,13 +6,24 @@ export const setProducts = (productsList, addingItem, id, productCounter) => {
 
     let existingProduct = productsList[existingProducts];
         let updatedProduct;
+        let updetedProductObj;
+        let amount, price;
 
         if (existingProduct) {
             updatedProduct = {
                 ...existingProduct,
-                amount: existingProduct.amount + productCounter
+                amount: existingProduct.amount + productCounter,
             }
-            localStorage.setItem(existingProduct.id, JSON.stringify(updatedProduct));
+
+            amount = updatedProduct.amount;
+            price = updatedProduct.price;
+
+            updetedProductObj = {
+                ...updatedProduct,
+                total: amount * price,
+            }
+            
+            localStorage.setItem(existingProduct.id, JSON.stringify(updetedProductObj));
         } else {
             localStorage.setItem(id, JSON.stringify(addingItem));
         }

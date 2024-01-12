@@ -1,27 +1,18 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useCart } from "../../store/cart-store";
 import { cart } from "../../store/styles";
 import { fetchLocalProducts } from "../../service/get-products";
-import CartProduct from "./CartProduct";
+import CartFooter from "./CartFooter";
+import CartProductsList from "./CartProductsList";
 
 const Cart = () => {
-    const [cartProducts, setCartProducts] = useState();
+    const [cartItems, setCartItems] = useState();
     const productInStorage = useCart(state => state.cartProductsLocal);
-    const cartProductsLocalHandler = useCart(state => state.cartProductsLocalHandler);
-
-    const fetchProductsLocal = () => {
-        const productsList = fetchLocalProducts().productsCart;
-        setCartProducts(productsList);
-    }
-
-    const setCartProductsLocalHandler = useCallback(() => {
-        cartProductsLocalHandler(cartProducts)
-    }, [cartProductsLocalHandler, cartProducts])
 
     useEffect(() => {
-        fetchProductsLocal();
-        setCartProductsLocalHandler();
-    }, [productInStorage, setCartProductsLocalHandler]);
+        setCartItems(fetchLocalProducts().productsCart);
+        console.log(productInStorage);
+    }, [productInStorage]);
 
     return (
         <div className={cart.wrapper}>
@@ -31,27 +22,8 @@ const Cart = () => {
                     <button className={cart.button}>Delivery</button>
                     <button className={cart.button}>Take away</button>
                 </div>
-                <div className={cart.productList}>
-                    {
-                        productInStorage?.map(product => (
-                            <CartProduct
-                                key={'cpId ' + Math.random()}
-                                id={'cpId ' + Math.random()}
-                                image={product.image}
-                                name={product.name}
-                                price={product.price}
-                                amount={product.amount}
-                            />
-                        ))
-                    }
-                </div>
-                <div className={cart.footer}>
-                    <div className={cart.total}>
-                        <p>Total</p>
-                        <p>$ 2.00</p>
-                    </div>
-                    <button className={cart.footerButton}>Place order</button>
-                </div>
+                <CartProductsList cartItems={cartItems}/>
+                <CartFooter />
             </div>
         </div>
 
