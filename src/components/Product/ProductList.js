@@ -47,21 +47,21 @@ const ProductList = () => {
             image: 'donut_pink',
             name: 'Raspberry Donut',
             price: '1.50',
-            description: ''
+            description: 'A delightful treat with soft dough, sweet raspberry filling, and a tempting glaze. Perfect blend of sweetness and indulgence in every bite. Elevate your taste experience with our luxurious pink donut!'
         },
         {
             category: 'Bakery',
-            image: 'pancake',
-            name: 'Pancake',
+            image: 'cupcake',
+            name: 'Oreo Cupcake',
             price: '1.00',
-            description: ''
+            description: 'A chocolatey masterpiece crowned with velvety Oreo frosting. A symphony of flavors, each bite offers rich cocoa bliss and creamy indulgence.'
         },
         {
             category: 'Bakery',
             image: 'croissant',
             name: 'Сroissant',
             price: '1.45',
-            description: ''
+            description: 'Layers of buttery, flaky perfection. Whether enjoyed plain or with your favorite filling, each bite promises an exquisite taste experience.'
         }
     ];
 
