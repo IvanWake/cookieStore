@@ -60,7 +60,7 @@ export const cart = {
     header: 'text-[2.5rem] font-bold',
     method: 'flex gap-4 pt-2 pb-4 items-center shadow-[0px_8px_16px_-8px_#00000020]',
     button: 'w-[50%] p-2 border border-black rounded-[0.4rem] transition-all duration-300 ease-in-out hover:border-[#FF9F5A] hover:bg-[#FF9F5A] hover:text-white active:scale-95',
-    productList: 'flex flex-col gap-4 min-h-[auto] h-full overflow-y-scroll',
+    productList: 'flex flex-col gap-4 min-h-[auto] h-full overflow-y-scroll cart-scroll',
     product: 'flex items-center justify-between p-4 rounded-[0.4rem] border border-black',
     productInfo: 'flex min-w-[100%] gap-4',
     description: 'flex flex-col w-[100%] justify-between',
