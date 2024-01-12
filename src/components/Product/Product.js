@@ -4,7 +4,6 @@ import { setProducts } from '../../service/set-products';
 import { products } from "../../store/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
-import product from "../../assets/american.png";
 
 const Product = (props) => {
     const [btnStyles, setBtnStyles] = useState(products.productBtn);
@@ -28,13 +27,19 @@ const Product = (props) => {
 
         const addingItem = {
             id: props.id,
+            image: props.image,
             name: props.name,
             amount: productCounter,
             price: props.price,
             desc: props.description,
         }
 
-        setProducts(productsList, addingItem, props.id, productCounter)
+        setProducts(productsList, addingItem, props.id, productCounter);
+
+        setTimeout(function() {
+            setBtnContent('Add to Cart');
+            setBtnStyles(products.productBtn);
+        }, 1000);
     }
 
     const increaseCounterHandler = () => {
@@ -54,7 +59,7 @@ const Product = (props) => {
     return (
         <div className={products.product} key={props.key}>
             <div className={products.productCol}>
-                <img src={product} alt="productImage" className="product-image"/>
+                <img src={props.image} alt="productImage" className="product-image"/>
                 <div className={products.productCount}>
                     <button className={products.editCount} onClick={decreaseCounterHandler}>
                         <FontAwesomeIcon icon={faMinus}/>
@@ -65,7 +70,7 @@ const Product = (props) => {
                     </button>
                 </div>
             </div>
-            <div className={products.productCol}>
+            <div className={products.productCol + ' w-full'}>
                 <div className={products.productDesc}>
                     <div className={products.productDescHeader}>
                         <div className={products.productName}>{props.name}</div>

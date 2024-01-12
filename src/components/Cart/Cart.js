@@ -37,6 +37,7 @@ const Cart = () => {
                             <CartProduct
                                 key={'cpId ' + Math.random()}
                                 id={'cpId ' + Math.random()}
+                                image={product.image}
                                 name={product.name}
                                 price={product.price}
                                 amount={product.amount}
