@@ -22,11 +22,11 @@ const Categories = () => {
         },
         {
             id: 'c4',
-            name: 'Ice cream'
+            name: 'Icecream'
         },
         {
             id: 'c5',
-            name: 'Sweets'
+            name: 'Doughnuts'
         },
     ];
 
