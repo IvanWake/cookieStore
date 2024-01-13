@@ -34,11 +34,11 @@ export const main = {
 
 export const products = {
     productList: 'flex flex-wrap gap-4 mt-4',
-    product: 'flex gap-6 bg-[#fff] p-6 rounded-[0.8rem] min-w-[380px]',
+    product: 'flex gap-6 bg-[#fff] p-6 rounded-[0.8rem] min-w-[380px] max-w-[380px] min-h-[210px] max-h-[210px]',
     productCol: 'flex flex-col justify-between gap-4',
     productDesc: 'flex flex-col gap-4',
     productDescHeader: 'flex justify-between',
-    productName: 'font-semibold',
+    productName: 'font-semibold truncate max-w-[166px]',
     productPrice: 'font-semibold text-[#D99C70] pl-2',
     productDescText: 'text-black/80 overflow-hidden max-w-[215px] break-words line-clamp-[2]',
     productBtn: 'rounded-[0.4rem] p-2 border-solid border-2 border-[#E6D9C9] bg-none text-[#D99C70] font-medium hover:bg-[#FF9F5A] hover:text-white transition-all duration-300 ease-in-out',
@@ -60,7 +60,7 @@ export const cart = {
     header: 'text-[2.5rem] font-bold',
     method: 'flex gap-4 pt-2 pb-4 items-center shadow-[0px_8px_16px_-8px_#00000020]',
     button: 'w-[50%] p-2 border border-black rounded-[0.4rem] transition-all duration-300 ease-in-out hover:border-[#FF9F5A] hover:bg-[#FF9F5A] hover:text-white active:scale-95',
-    productList: 'flex flex-col gap-4 min-h-[auto] h-full overflow-y-scroll',
+    productList: 'flex flex-col gap-4 min-h-[auto] h-full overflow-y-scroll cart-scroll',
     product: 'flex items-center justify-between p-4 rounded-[0.4rem] border border-black',
     productInfo: 'flex min-w-[100%] gap-4',
     description: 'flex flex-col w-[100%] justify-between',
@@ -73,4 +73,5 @@ export const cart = {
     footer: 'bg-white flex flex-col pt-4 gap-4 shadow-[0px_-8px_16px_-8px_#00000020]',
     total: 'flex justify-between font-semibold text-[1.2em]',
     footerButton: 'border-none px-4 py-4 text-[1.2em] font-medium text-white bg-[#FF9F5A] rounded-[0.4rem]',
+    xMark: 'hover: cursor-pointer'
 }

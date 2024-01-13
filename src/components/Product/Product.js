@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { fetchLocalProducts } from '../../service/get-products';
+import { useCart } from "../../store/cart-store";
 import { setProducts } from '../../service/set-products';
 import { products } from "../../store/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
-import product from "../../assets/american.png";
 
 const Product = (props) => {
     const [btnStyles, setBtnStyles] = useState(products.productBtn);
     const [btnContent, setBtnContent] = useState('Add to Cart');
     const [productCounter, setProductCounter] = useState(1);
+    const cartProductsLocal = useCart(state => state.cartProductsLocalHandler);
 
     const addToCartHandler = () => {
 
@@ -22,19 +23,25 @@ const Product = (props) => {
         setBtnStyles(products.productAdded);
         setBtnContent('Added to Cart');
 
-
-        // Add to Cart (localStorage)
+        // Get Products (localStorage)
         const productsList = fetchLocalProducts().productsCart; 
 
         const addingItem = {
             id: props.id,
+            image: props.image,
             name: props.name,
             amount: productCounter,
             price: props.price,
             desc: props.description,
+            total: props.price * productCounter,
         }
-
-        setProducts(productsList, addingItem, props.id, productCounter)
+        //Set Product
+        setProducts(productsList, addingItem, props.id, productCounter);
+        cartProductsLocal(productsList);
+        setTimeout(function() {
+            setBtnContent('Add to Cart');
+            setBtnStyles(products.productBtn);
+        }, 1000);
     }
 
     const increaseCounterHandler = () => {
@@ -54,18 +61,17 @@ const Product = (props) => {
     return (
         <div className={products.product} key={props.key}>
             <div className={products.productCol}>
-                <img src={product} alt="productImage" className="product-image"/>
+                <img src={props.image} alt="productImage" className="product-image"/>
                 <div className={products.productCount}>
                     <button className={products.editCount} onClick={decreaseCounterHandler}>
                         <FontAwesomeIcon icon={faMinus}/>
                     </button>
                     <div className="counter">{productCounter}</div>
-                    <button className={products.editCount} onClick={increaseCounterHandler}><FontAwesomeIcon
-                        icon={faPlus}/>
+                    <button className={products.editCount} onClick={increaseCounterHandler}><FontAwesomeIcon icon={faPlus}/>
                     </button>
                 </div>
             </div>
-            <div className={products.productCol}>
+            <div className={products.productCol + ' w-full'}>
                 <div className={products.productDesc}>
                     <div className={products.productDescHeader}>
                         <div className={products.productName}>{props.name}</div>
