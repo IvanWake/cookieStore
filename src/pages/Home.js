@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { useCart } from "../store/cart-store";
+import { AnimatePresence } from "framer-motion";
 import Header from "../components/Layout/Header";
 import Main from "../components/Layout/Main";
 import MainWrapper from "../components/Layout/MainWrapper";
@@ -18,7 +19,9 @@ const Home = () => {
                     <Categories />
                     <ProductList />
                 </MainWrapper>
-                { isCartVisible && <Cart /> }
+                <AnimatePresence>
+                    {isCartVisible && <Cart />}
+                </AnimatePresence>
             </Main>
 
         </Fragment>

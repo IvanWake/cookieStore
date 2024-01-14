@@ -16,41 +16,12 @@ html {
   user-select: none;
 }
 
-:root {
-  --scrollbarBg: #FFCCA7;
-  --scrollbarThumb: #FFE4D0;
-  --scrollbarWidth: 0.5rem;
-  --scrollbarBorder: 3px solid var(--scrollbarBg);
-  --scrollbarBorderRadius: calc(var(--scrollbarWidth) / 2);
-}
-
 body {
-  scrollbar-width: var(--scrollbarWidth);
-  scrollbar-color: var(--scrollbarThumb) var(--scrollbarBg);
+  scrollbar-width: 0;
 }
 
 ::-webkit-scrollbar {
-  width: var(--scrollbarWidth);
-}
-
-body::-webkit-scrollbar-track {
-  background: var(--scrollbarBg);
-}
-
-.cart-scroll::-webkit-scrollbar-track {
-  background: #fff;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbarThumb);
-  border-radius: var(--scrollbarBorderRadius);
-  border: var(--scrollbarBorder);
-}
-
-.cart-scroll::-webkit-scrollbar-thumb {
-  background-color: #efefef;
-  border-radius: var(--scrollbarBorderRadius);
-  border: 3px solid #0000;
+  width: 0;
 }
 
 body {

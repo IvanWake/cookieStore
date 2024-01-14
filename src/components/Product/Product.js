@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { fetchLocalProducts } from '../../service/get-products';
 import { useCart } from "../../store/cart-store";
+import { motion } from "framer-motion";
 import { setProducts } from '../../service/set-products';
 import { products } from "../../store/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,7 +25,7 @@ const Product = (props) => {
         setBtnContent('Added to Cart');
 
         // Get Products (localStorage)
-        const productsList = fetchLocalProducts().productsCart; 
+        const productsList = fetchLocalProducts().filteredProducts;
 
         const addingItem = {
             id: props.id,
@@ -34,11 +35,13 @@ const Product = (props) => {
             price: props.price,
             desc: props.description,
             total: props.price * productCounter,
+            chlien: 1,
         }
         //Set Product
         setProducts(productsList, addingItem, props.id, productCounter);
-        cartProductsLocal(productsList);
-        setTimeout(function() {
+        cartProductsLocal();
+
+        setTimeout(function () {
             setBtnContent('Add to Cart');
             setBtnStyles(products.productBtn);
         }, 1000);
@@ -59,15 +62,20 @@ const Product = (props) => {
     }
 
     return (
-        <div className={products.product} key={props.key}>
+        <motion.div
+            initial={{height: 0, opacity: 0}}
+            animate={{height: 'auto', opacity: 1}}
+            style={{overflow: 'hidden'}}
+            transition={{duration: 0.9, ease: 'circInOut'}}
+            className={products.product} key={props.key}>
             <div className={products.productCol}>
-                <img src={props.image} alt="productImage" className="product-image"/>
+                <img src={props.image} alt="productImage" className="product-image" />
                 <div className={products.productCount}>
                     <button className={products.editCount} onClick={decreaseCounterHandler}>
-                        <FontAwesomeIcon icon={faMinus}/>
+                        <FontAwesomeIcon icon={faMinus} />
                     </button>
                     <div className="counter">{productCounter}</div>
-                    <button className={products.editCount} onClick={increaseCounterHandler}><FontAwesomeIcon icon={faPlus}/>
+                    <button className={products.editCount} onClick={increaseCounterHandler}><FontAwesomeIcon icon={faPlus} />
                     </button>
                 </div>
             </div>
@@ -84,7 +92,7 @@ const Product = (props) => {
 
                 <button className={btnStyles} onClick={addToCartHandler}>{btnContent}</button>
             </div>
-        </div>
+        </motion.div>
     );
 }
 

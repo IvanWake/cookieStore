@@ -1,6 +1,6 @@
 import { useCart } from "../../store/cart-store";
+import { AnimatePresence } from "framer-motion";
 import { setProducts } from "../../service/set-products";
-import { fetchLocalProducts } from "../../service/get-products";
 import { cart } from "../../store/styles";
 import CartProduct from "./CartProduct";
 
@@ -10,7 +10,7 @@ const CartProductsList = (props) => {
 
     const increaseHandler = (updatingItem) => {
         setProducts(props.cartItems, updatingItem, updatingItem.id, 1);
-        cartProductsLocal(fetchLocalProducts().productsCart);
+        cartProductsLocal();
     }
 
     const decreaseHandler = (updatingItem) => {
@@ -19,33 +19,35 @@ const CartProductsList = (props) => {
         }
 
         setProducts(props.cartItems, updatingItem, updatingItem.id, -1);
-        cartProductsLocal(fetchLocalProducts().productsCart);
+        cartProductsLocal();
     }
 
     const removeProductHandler = (removingItem) => {
         localStorage.removeItem(removingItem.id);
-        cartProductsLocal(fetchLocalProducts().productsCart);
+        cartProductsLocal();
     }
 
     return (
         <div className={cart.productList}>
-            {
-                props.cartItems?.map(product => (
-                    <CartProduct
-                        key={product.id}
-                        id={product.id}
-                        image={product.image}
-                        name={product.name}
-                        price={product.price}
-                        desc={product.desc}
-                        amount={product.amount}
-                        total={product.total}
-                        onIncrease={increaseHandler}
-                        onDecrease={decreaseHandler}
-                        onRemoveProduct={removeProductHandler}
-                    />
-                ))
-            }
+            <AnimatePresence>
+                {
+                    props.cartItems?.map(product => (
+                        <CartProduct
+                            key={product.id}
+                            id={product.id}
+                            image={product.image}
+                            name={product.name}
+                            price={product.price}
+                            desc={product.desc}
+                            amount={product.amount}
+                            total={product.total}
+                            onIncrease={increaseHandler}
+                            onDecrease={decreaseHandler}
+                            onRemoveProduct={removeProductHandler}
+                        />
+                    ))
+                }
+            </AnimatePresence>
         </div>
     );
 }

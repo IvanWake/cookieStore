@@ -6,9 +6,10 @@ export const header = {
     search: 'flex items-center relative py-2 px-4 pl-8 rounded-[0.6rem] bg-white',
     searchI: 'text-black/40 absolute left-2',
     searchInput: 'text-sm bg-none border-none focus:outline-none',
-    button: 'flex items-center gap-2 py-2 px-4 rounded-[0.6rem] bg-[#ff9f5a] max-h-[32px] text-white border-none transition ease-in duration-150 active:scale-95 hover:bg-[#ff9f5a80]',
+    button: 'flex relative items-center gap-2 py-2 px-4 rounded-[0.6rem] bg-[#ff9f5a] max-h-[32px] text-white border-none transition ease-in duration-150 active:scale-95 hover:bg-[#ff9f5a80]',
     profile: 'relative flex items-center gap-4',
-    profileImage: 'cursor-pointer rounded-full'
+    profileImage: 'cursor-pointer rounded-full',
+    cartBadge: 'absolute top-[-12px] right-[-12px] py-[3px] px-[8px] bg-[#FF9F5A] rounded-full border-2 border-[#FFCCA7] text-white text-xs',
 };
 
 export const profile = {

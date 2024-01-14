@@ -1,15 +1,15 @@
 import { fetchLocalProducts } from "./get-products";
 
-export const getTotalPrice = () => {
-    let totalPrice = 0;
+export const getTotalAmount = () => {
+    let totalAmount = 0;
 
     let productsList = fetchLocalProducts().filteredProducts;
 
     for (const key in productsList) {
-        totalPrice += productsList[key].total;
+        totalAmount += productsList[key].amount;
     }
 
     return {
-        totalPrice,
+        totalAmount,
     }
 }

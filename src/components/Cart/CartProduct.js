@@ -1,4 +1,5 @@
 import { cart } from "../../store/styles";
+import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 
@@ -24,7 +25,13 @@ const CartProduct = (props) => {
 
 
     return (
-        <div className={cart.product}>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35 }}
+            className={cart.product}
+        >
             <div className={cart.productInfo}>
                 <img src={props.image} alt="product" />
                 <div className={cart.description}>
@@ -46,7 +53,7 @@ const CartProduct = (props) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
 
