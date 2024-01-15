@@ -1,6 +1,6 @@
 import { useCart } from "../../store/cart-store";
 import { AnimatePresence } from "framer-motion";
-import { setProducts } from "../../service/set-products";
+import { setProducts } from "../../service/cart";
 import { cart } from "../../store/styles";
 import CartProduct from "./CartProduct";
 

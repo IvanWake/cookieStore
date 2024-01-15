@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useCart } from "../../store/cart-store";
-import { getTotalAmount } from "../../service/get-cart-amount"; 
+import { getTotalAmount } from "../../service/cart"; 
 import { header } from '../../store/styles.js';
 
 

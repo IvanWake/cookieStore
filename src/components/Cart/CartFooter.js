@@ -1,4 +1,4 @@
-import { getTotalPrice } from "../../service/get-cart-total";
+import { getTotalPrice } from "../../service/cart";
 import { cart } from "../../store/styles";
 
 const CartFooter = () => {

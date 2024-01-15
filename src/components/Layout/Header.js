@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faSliders, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import ProfileWrapper from "./ProfileWrapper";
 import CartBadge from './CartBadge.js';
+import FilterButton from './FilterButton.js';
 import logo from '../../assets/logo.svg';
 
 const Header = (props) => {
@@ -27,7 +28,7 @@ const Header = (props) => {
                             <FontAwesomeIcon icon={faMagnifyingGlass} className={header.searchI} />
                             <input type="text" placeholder="Search..." className={header.searchInput} />
                         </div>
-                        <button className={header.button}><FontAwesomeIcon icon={faSliders} /> Filter</button>
+                        <FilterButton />
                     </div>
 
                     <div className={header.headerDiv}>

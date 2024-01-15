@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useProducts } from "../../store/products-store";
 import { database } from "../../firebase";
 import { AnimatePresence } from "framer-motion";
@@ -8,14 +8,16 @@ import Product from "./Product";
 
 const ProductList = () => {
     const category = useProducts(state => state.selectedCategory);
-    const [productsList, setProductsList] = useState();
+    const productsList = useProducts(state => state.products);
+    const setProducts = useProducts(state => state.setProducts);
+
     const urlProducts = "https://img.cookiestore.ru/";
 
     const fetchProducts = () => {
         const productsResponse = ref(database, 'products');
         onValue(productsResponse, (snapshot) => {
             const data = snapshot.val();
-            setProductsList(data);
+            setProducts(data);
         });
     }
 
@@ -23,13 +25,12 @@ const ProductList = () => {
         fetchProducts();
     }, []);
 
-
     let productsListFiltered = productsList?.filter((product) =>
-        product.category === category);
+        product.category === category
+    );
 
-    if (category === 'All') {
-        productsListFiltered = productsList;
-    }
+    if (category === 'All') productsListFiltered = productsList;
+    
 
     return (
         <div className={products.productList}>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useCart } from "../../store/cart-store";
 import { cart } from "../../store/styles";
 import { motion, AnimatePresence } from "framer-motion";
-import { fetchLocalProducts } from "../../service/get-products";
+import { fetchLocalProducts } from "../../service/cart";
 import CartFooter from "./CartFooter";
 import CartProductsList from "./CartProductsList";
 

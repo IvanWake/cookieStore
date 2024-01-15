@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { fetchLocalProducts } from '../../service/get-products';
+import { fetchLocalProducts } from '../../service/cart';
 import { useCart } from "../../store/cart-store";
 import { motion } from "framer-motion";
-import { setProducts } from '../../service/set-products';
+import { setProducts } from '../../service/cart';
 import { products } from "../../store/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
