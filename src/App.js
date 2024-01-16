@@ -1,11 +1,12 @@
-import React, { Fragment } from "react";
 import { Route, Switch, Redirect } from 'react-router-dom';
 import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
+import LogIn from "./pages/LogIn";
+import SignUp from "./pages/SignUp";
 
 const App = () => {
   return (
-      <Fragment>
+      <>
           <Switch>
               <Route path="/" exact>
                   <Redirect to="/home" />
@@ -13,11 +14,17 @@ const App = () => {
               <Route path="/home" exact>
                   <Home/>
               </Route>
+              <Route path="/login" exact>
+                  <LogIn/>
+              </Route>
+              <Route path="/signup" exact>
+                  <SignUp/>
+              </Route>
               <Route path='*'>
                   <NotFound/>
               </Route>
           </Switch>
-      </Fragment>
+      </>
   );
 }
 

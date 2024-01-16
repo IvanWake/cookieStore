@@ -1,5 +1,5 @@
 import { create } from "zustand";
 
 const useAuth = create(set => ({
-    isUserAuth: false,
+    isUserAuth: null,
 }))

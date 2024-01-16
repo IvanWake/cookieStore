@@ -1,8 +1,11 @@
 import { auth } from '../../store/styles';
+import { Link } from 'react-router-dom';
 
 const SignUpButton = () => {
     return (
-        <button className={auth.signUp}>Sign Up</button>
+        <Link to={'/signup'}>
+            <button className={auth.signUp}>Sign Up</button>
+        </Link>
     );
 }
 
