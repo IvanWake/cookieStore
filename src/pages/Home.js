@@ -23,7 +23,6 @@ const Home = () => {
                     {isCartVisible && <Cart />}
                 </AnimatePresence>
             </Main>
-
         </Fragment>
     );
 }

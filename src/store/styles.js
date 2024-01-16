@@ -12,6 +12,12 @@ export const header = {
     cartBadge: 'absolute top-[-12px] right-[-12px] py-[3px] px-[8px] bg-[#FF9F5A] rounded-full border-2 border-[#FFCCA7] text-white text-xs',
 };
 
+export const auth = {
+    buttonsWrapper: 'flex gap-4',
+    logIn: 'flex items-center py-2 px-4 font-semibold max-h-[32px]',
+    signUp: 'flex items-center py-2 px-4 rounded-[0.6rem] border-2 border-black font-semibold max-h-[32px]',
+}
+
 export const profile = {
     profileWrapper: 'z-50 absolute top-12 right-0 h-auto w-auto min-w-[300px] bg-[#ffcca7] shadow-md rounded-b-[0.8rem] pb-4',
     profileInfo: 'flex items-center rounded-md gap-2 p-4 m-2 bg-black/10 hover:bg-black/15',
