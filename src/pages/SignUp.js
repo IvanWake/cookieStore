@@ -22,11 +22,11 @@ const SignUp = () => {
             {/* Login component */}
             <div className="flex shadow-md">
                 {/* SignUp banner */}
-                <div className="flex flex-wrap content-center justify-center overflow-hidden rounded-r-md w-[24rem] h-[32rem]">
-                    <img className="w-full bg-center bg-no-repeat bg-cover rounded-r-md" src="https://img.cookiestore.ru/cat.jpg" alt='img'/>
+                <div className="flex flex-wrap content-center justify-center overflow-hidden rounded-l-md w-[24rem] h-[32rem]">
+                    <img className="w-full bg-center bg-no-repeat bg-cover rounded-l-md" src="https://img.cookiestore.ru/cat.jpg" alt='img'/>
                 </div>
                 {/* Login form */}
-                <div className="flex flex-wrap content-center justify-center rounded-l-md bg-white w-[24rem] h-[32rem]">
+                <div className="flex flex-wrap content-center justify-center rounded-r-md bg-white w-[24rem] h-[32rem]">
                     <div className="w-72">
                         {/* Heading */}
                         <h1 className="text-xl font-semibold">Welcome back</h1>
