@@ -5,6 +5,10 @@ export const useProducts = create(set => ({
     setSortMethod: (method) => set(state=> {
         return { sortMethod: method }
     }),
+    productsList: [],
+    setProductsList: (productsFormFirebase) => set(state => {
+        return { productsList: productsFormFirebase }
+    }),
     products: [],
     setProducts: (productsServer) => set(state => {
         return { products: productsServer };

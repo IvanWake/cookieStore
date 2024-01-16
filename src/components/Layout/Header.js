@@ -1,11 +1,12 @@
 import React, { Fragment, useState } from 'react';
 import { useCart } from '../../store/cart-store';
 import { header } from '../../store/styles.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faSliders, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';   
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import ProfileWrapper from "./ProfileWrapper";
 import CartBadge from './CartBadge.js';
-import FilterButton from './FilterButton.js';
+import FilterButton from './SortButton.js';
+import Search from './Search.js';
 import logo from '../../assets/logo.svg';
 
 const Header = (props) => {
@@ -24,10 +25,7 @@ const Header = (props) => {
                     <div className={header.headerDiv}>
                         <img src={logo} alt="CookieStore" width="32" />
                         <div className={header.hr}></div>
-                        <div className={header.search}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} className={header.searchI} />
-                            <input type="text" placeholder="Search..." className={header.searchInput} />
-                        </div>
+                        <Search />
                         <FilterButton />
                     </div>
 
