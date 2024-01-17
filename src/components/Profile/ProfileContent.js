@@ -8,7 +8,6 @@ const ProfileContent = () => {
         <>
             {
                 isUserAuth ? <Profile /> : <AuthButtons />
-
             }
 
         </>

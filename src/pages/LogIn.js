@@ -1,11 +1,31 @@
 import { useState } from 'react';
+import { useForm } from "react-hook-form";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 const LogIn = () => {
     const [passIsVisible, setPassIsVisible] = useState(false);
+    const [eyeIcon, setEyeIcon] = useState(faEye);
 
-    const submitHandler = (e) => {
-        e.preventDefault();
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors, isValid }
+    } = useForm({
+        mode: 'onBlur',
+    })
+
+    const onSubmitHandler = (e) => {
+        if (isValid) {
+            reset();
+        }
+    }
+
+    const onHideHandler = () => {
+        setPassIsVisible(prevState => !prevState);
+        setEyeIcon(passIsVisible ? faEye : faEyeSlash)
     }
 
     return (
@@ -21,25 +41,56 @@ const LogIn = () => {
                         <small className="text-gray-400">Welcome back! Please enter your details</small>
 
                         {/* Form */}
-                        <form className="mt-4" onSubmit={submitHandler}>
-                            <div className="mb-3">
-                                <label className="mb-2 block text-xs font-semibold">Email</label>
-                                <input type="email" placeholder="Enter your email" className="block w-full rounded-md border border-gray-300 focus:border-[#ff9f5a] focus:outline-none focus:ring-1 focus:ring-[#ff9f5a] py-1 px-1.5 text-gray-500" />
+                        <form className="mt-4" onSubmit={handleSubmit(onSubmitHandler)}>
+                        <div className="mb-3">
+                                <label className="mb-2 block text-sm font-semibold" htmlFor='lEmail'>Email</label>
+                                <input
+                                id='lEmail'
+                                type="email"
+                                placeholder="Enter your email"
+                                className="block w-full rounded-md border border-gray-300 focus:border-[#ff9f5a] focus:outline-none focus:ring-1 focus:ring-[#ff9f5a] py-1 px-1.5 text-gray-500"
+                                {...register('loginEmail', {
+                                    required: 'Fill the field',
+                                    validate: (value) => /\S+@\S+\.\S+/.test(value),
+                                })}
+                                />
+                                {
+                                    errors.loginEmail &&
+                                    <p className='text-[#c01400] text-[.8rem]'>{errors.loginEmail.message}</p>
+                                }
                             </div>
 
                             <div className="mb-3">
-                                <label className="mb-2 block text-xs font-semibold">Password</label>
-                                <input type={passIsVisible ? "text" : "password"} placeholder="Enter your password" className="block w-full rounded-md border border-gray-300 focus:border-[#ff9f5a] focus:outline-none focus:ring-1 focus:ring-[#ff9f5a] py-1 px-1.5 text-gray-500" />
-                                <button onClick={() => {setPassIsVisible(prevState => !prevState)}}>Hide</button>
+                                <label className="mb-2 block text-sm font-semibold" htmlFor='lPass'>Password</label>
+                                <div className='flex items-center relative rounded-[0.6rem] bg-white'>
+                                    <input
+                                        id='lPass'
+                                        type={passIsVisible ? "text" : "password"}
+                                        placeholder="Enter your password"
+                                        className="block w-full rounded-md border border-gray-300 focus:border-[#ff9f5a] focus:outline-none focus:ring-1 focus:ring-[#ff9f5a] py-1 px-1.5 text-gray-500"
+                                        {...register('loginPass', {
+                                            required: 'Fill the field',
+                                            minLength: {
+                                                value: 8,
+                                                message: "Password must be more then 8 characters",
+                                            }
+                                        })}
+                                    />
+                                    <button className="absolute top-[5px] right-2" onClick={onHideHandler}><FontAwesomeIcon icon={eyeIcon} /></button>
+                                </div>
+                                {
+                                    errors.loginPass &&
+                                    <p className='text-[#c01400] text-[.8rem]'>{errors.loginPass.message}</p>
+                                }
                             </div>
-
+                                
                             <div className="mb-3 flex flex-wrap content-center">
-                                <input id="remember" type="checkbox" className="mr-1 checked:bg-[#ff9f5a]" /> <label for="remember" className="mr-auto text-xs font-semibold">Remember me</label>
+                                <input id="remember" type="checkbox" className="mr-1 checked:bg-[#ff9f5a]" /> <label htmlFor="remember" className="mr-auto text-xs font-semibold">Remember me</label>
                                 <button className="text-xs font-semibold text-[#ff9f5a]">Forgot password?</button>
                             </div>
 
                             <div className="mb-3">
-                                <button className="mb-1.5 block w-full text-center text-white bg-[#ff9f5a] hover:bg-[#ff9f5a80] transition ease-in duration-150 active:scale-95 px-2 py-1.5 rounded-md">Log In</button>
+                                <button className="mb-1.5 block w-full text-center text-white bg-[#ff9f5a] hover:bg-[#ff9f5a80] transition ease-in duration-150 active:scale-95 px-2 py-1.5 rounded-md disabled:bg-[#ff9f5a80] disabled:cursor-not-allowed disabled:active:scale-100" disabled={errors.loginEmail || errors.loginPass}>Log In</button>
                             </div>
                         </form>
 
