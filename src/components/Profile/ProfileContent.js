@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useAuth } from '../../store/auth-store';
 import AuthButtons from '../Auth/AuthButtons';
 import Profile from './Profile';
 
 const ProfileContent = () => {
-    const isUserAuth = false;
+    const isUserAuth = useAuth(state => state.isUserAuth);
     return (
         <>
             {

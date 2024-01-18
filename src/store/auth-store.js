@@ -1,5 +1,12 @@
 import { create } from "zustand";
 
-const useAuth = create(set => ({
+export const useAuth = create(set => ({
     isUserAuth: null,
+    setIsUserAuth: (isAuth) => set(state => {
+        return { isUserAuth: isAuth };
+    }),
+    userData: {},
+    setUserData: (data) => set(state => {
+        return { userData: data };
+    }),
 }))
