@@ -29,15 +29,15 @@ const SignUp = () => {
         const auth = getAuth();
         if (isValid) {
             createUserWithEmailAndPassword(auth, data.signUpEmail, data.signUpPass)
-                .then(({user}) => {
-                setUser({
-                    email: user.email,
-                    id: user.uid,
-                    token: user.accessToken,
-                });
-                setIsUserAuth(true);
-                push('/home');
-            }).catch(() => {setSignUpError('This E-mail is busy')})
+                .then(({ user }) => {
+                    setUser({
+                        email: user.email,
+                        id: user.uid,
+                        token: user.accessToken,
+                    });
+                    setIsUserAuth(true);
+                    push('/home');
+                }).catch(() => { setSignUpError('This E-mail is busy') })
             reset();
         }
     }
@@ -49,16 +49,14 @@ const SignUp = () => {
 
     return (
         <>
-            { isUserAuth && <Redirect to="/home" /> }
+            {isUserAuth && <Redirect to="/home" />}
             <div className="flex flex-wrap min-h-screen w-full content-center justify-center bg-gray-200 py-10">
 
                 {/* Login component */}
                 <div className="flex shadow-md">
                     {/* SignUp banner */}
-                    <div
-                        className="flex flex-wrap content-center justify-center overflow-hidden rounded-l-md w-[24rem] h-[32rem]">
-                        <img className="w-full bg-center bg-no-repeat bg-cover rounded-l-md"
-                             src="https://img.cookiestore.ru/cat.jpg" alt='img'/>
+                    <div className="flex flex-wrap content-center justify-center overflow-hidden rounded-l-md w-[24rem] h-[32rem]">
+                        <img className="w-full bg-center bg-no-repeat bg-cover rounded-l-md" src="https://img.cookiestore.ru/cat.jpg" alt='img' />
                     </div>
                     {/* Login form */}
                     <div className="flex flex-wrap content-center justify-center rounded-r-md bg-white w-[24rem] h-[32rem]">
@@ -70,7 +68,13 @@ const SignUp = () => {
                             {/* Form */}
                             <form className="mt-4" onSubmit={handleSubmit(onSubmitHandler)}>
                                 <div className="mb-3">
-                                    <label className="mb-2 block text-sm font-semibold" htmlFor='sEmail'>Email</label>
+                                    <div className="flex justify-between">
+                                        <label className="mb-2 block text-sm font-semibold" htmlFor='sEmail'>Email</label>
+                                        {
+                                            errors.signUpEmail &&
+                                            <p className='text-[#ff5a5a] text-[.8rem] text-right'>{errors.signUpEmail.message || signUpError}</p>
+                                        }
+                                    </div>
                                     <input
                                         id='sEmail'
                                         type="email"
@@ -81,14 +85,16 @@ const SignUp = () => {
                                             validate: (value) => /\S+@\S+\.\S+/.test(value),
                                         })}
                                     />
-                                    {
-                                        errors.signUpEmail &&
-                                        <p className='text-[#c01400] text-[.8rem]'>{errors.signUpEmail.message}</p>
-                                    }
                                 </div>
 
                                 <div className="mb-3">
-                                    <label className="mb-2 block text-sm font-semibold" htmlFor='sPass'>Password</label>
+                                    <div className="flex justify-between">
+                                        <label className="mb-2 block text-sm font-semibold" htmlFor='sPass'>Password</label>
+                                        {
+                                            errors.signUpPass &&
+                                            <p className='text-[#ff5a5a] text-[.8rem] text-right'>{errors.signUpPass.message}</p>
+                                        }
+                                    </div>
                                     <div className='flex items-center relative rounded-[0.6rem] bg-white'>
                                         <input
                                             id='sPass'
@@ -99,24 +105,20 @@ const SignUp = () => {
                                                 required: 'Fill the field',
                                                 minLength: {
                                                     value: 8,
-                                                    message: "Password must be more then 8 characters",
+                                                    message: "The minimum length is 8 characters",
                                                 }
                                             })}
                                         />
                                         <button type="button" className="absolute top-[5px] right-2" onClick={onHideHandler}>
-                                            <FontAwesomeIcon icon={eyeIcon}/></button>
+                                            <FontAwesomeIcon icon={eyeIcon} />
+                                        </button>
                                     </div>
-                                    {
-                                        errors.signUpPass &&
-                                        <p className='text-[#c01400] text-[.8rem]'>{errors.signUpPass.message}</p>
-                                    }
                                 </div>
 
 
                                 <div className="mb-3 flex flex-wrap content-center">
-                                    <input id="remember" type="checkbox" className="mr-1 checked:bg-[#ff9f5a]"/> <label
-                                    htmlFor="remember" className="mr-auto text-xs font-semibold">I agree privacy
-                                    policy</label>
+                                    <input id="remember" type="checkbox" className="mr-1 checked:bg-[#ff9f5a]" />
+                                    <label htmlFor="remember" className="mr-auto text-xs font-semibold">I agree privacy policy</label>
                                     <button className="text-xs font-semibold text-[#ff9f5a]">Forgot password?</button>
                                 </div>
 
@@ -129,24 +131,22 @@ const SignUp = () => {
                             </form>
 
                             {/* Footer */}
-                            <div className="text-center">
+                            <div className="text-center relative">
                                 <span className="text-xs text-gray-400 font-semibold">Already have account? </span>
                                 <Link to="/login">
-                                    <button type='button' className="text-xs font-semibold text-[#ff9f5a] underline">Log
-                                        In
-                                    </button>
+                                    <button type='button' className="text-xs font-semibold text-[#ff9f5a] underline">Log In</button>
                                 </Link>
-                                {
+                                {/* {
                                     signUpError &&
-                                    <p className="text-[#c01400] text-[.8rem]">{signUpError}</p>
-                                }
+                                    <p className="text-[#ff5a5a] text-[.8rem] text-center absolute">{signUpError}</p>
+                                } */}
                             </div>
                         </div>
                     </div>
 
                 </div>
             </div>
-    </>
+        </>
     );
 }
 
