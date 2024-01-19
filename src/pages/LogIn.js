@@ -124,22 +124,22 @@ const LogIn = () => {
                                 <div className="mb-3">
                                     <button
                                         className="mb-1.5 block w-full text-center text-white bg-[#ff9f5a] hover:bg-[#ff9f5a80] transition ease-in duration-150 active:scale-95 px-2 py-1.5 rounded-md disabled:bg-[#ff9f5a80] disabled:cursor-not-allowed disabled:active:scale-100"
-                                        disabled={errors.loginEmail ||  errors.loginPass}>Log In
+                                        disabled={errors.loginEmail || errors.loginPass}>Log In
                                     </button>
                                 </div>
                             </form>
 
                             {/* Footer */}
-                            <div className="text-center">
+                            <div className="text-center relative">
                                 <span className="text-xs text-gray-400 font-semibold">Don't have account? </span>
                                 <Link to="/signup">
                                     <button type="button" className="text-xs font-semibold text-[#ff9f5a] underline">Sign Up</button>
                                 </Link>
+                                {
+                                    logInError &&
+                                    <p className="text-[#ff5a5a] text-[.8rem] absolute top-[30px] left-1/2 transform -translate-x-1/2">{logInError}</p>
+                                }
                             </div>
-                            {
-                                logInError &&
-                                <p className="text-[#ff5a5a] text-[.8rem] text-center absolute top-[30px] left-1/2 transform -translate-x-1/2">{logInError}</p>
-                            }
                         </div>
                     </div>
 

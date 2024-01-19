@@ -138,7 +138,7 @@ const SignUp = () => {
                                 </Link>
                                 {
                                     signUpError &&
-                                    <p className="text-[#ff5a5a] text-[.8rem] text-center absolute top-[30px] left-1/2 transform -translate-x-1/2">{signUpError}</p>
+                                    <p className="text-[#ff5a5a] text-[.8rem] absolute top-[30px] left-1/2 transform -translate-x-1/2">{signUpError}</p>
                                 }
                             </div>
                         </div>
