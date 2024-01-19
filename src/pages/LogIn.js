@@ -136,10 +136,10 @@ const LogIn = () => {
                                     <button type="button" className="text-xs font-semibold text-[#ff9f5a] underline">Sign Up</button>
                                 </Link>
                             </div>
-                            {/* {
+                            {
                                 logInError &&
-                                <p className="text-[#ff5a5a] text-[.8rem]">{logInError}</p>
-                            } */}
+                                <p className="text-[#ff5a5a] text-[.8rem] text-center absolute top-[30px] left-1/2 transform -translate-x-1/2">{logInError}</p>
+                            }
                         </div>
                     </div>
 
