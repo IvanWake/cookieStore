@@ -1,4 +1,3 @@
-import React, { Fragment } from "react";
 import { useCart } from "../store/cart-store";
 import { AnimatePresence } from "framer-motion";
 import Header from "../components/Layout/Header";
@@ -12,7 +11,7 @@ const Home = () => {
     const isCartVisible = useCart(state => state.isCartVisible);
 
     return (
-        <Fragment>
+        <>
             <Header />
             <Main>
                 <MainWrapper>
@@ -23,7 +22,7 @@ const Home = () => {
                     {isCartVisible && <Cart />}
                 </AnimatePresence>
             </Main>
-        </Fragment>
+        </>
     );
 }
 

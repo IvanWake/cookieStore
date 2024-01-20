@@ -9,4 +9,8 @@ export const useAuth = create(set => ({
     setUserData: (data) => set(state => {
         return { userData: data };
     }),
+    isUserLoading: null,
+    setIsUserLoading: (userStatus) => set(state => {
+        return { isUserLoading: userStatus };
+    })
 }))

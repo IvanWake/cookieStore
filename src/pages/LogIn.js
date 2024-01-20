@@ -1,20 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
 import { useAuth } from '../store/auth-store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const LogIn = () => {
     const [passIsVisible, setPassIsVisible] = useState(false);
     const [eyeIcon, setEyeIcon] = useState(faEye);
     const [logInError, setLogInError] = useState('');
+    const isUserAuth = useAuth(state => state.isUserAuth);
 
     const setUser = useAuth(state => state.setUserData);
-    const isUserAuth = useAuth(state => state.isUserAuth);
     const setIsUserAuth = useAuth(state => state.setIsUserAuth);
     const { push } = useHistory();
+
+    useEffect(() => {
+        isUserAuth && push("/home");
+    }, [isUserAuth]);
 
     const {
         register,
@@ -25,20 +30,23 @@ const LogIn = () => {
         mode: 'onBlur',
     })
 
+    const onLogin = async (email, pass) => {
+        signInWithEmailAndPassword(auth, email, pass)
+            .then(({ user }) => {
+                setUser({
+                    email: user.email,
+                    id: user.uid,
+                    token: user.accessToken,
+                });
+                setIsUserAuth(true);
+                reset();
+                push('/home');
+            }).catch(() => { setLogInError('Incorrect email or password') })
+    }
+
     const onSubmitHandler = (data) => {
         if (isValid) {
-            const auth = getAuth();
-            signInWithEmailAndPassword(auth, data.loginEmail, data.loginPass)
-                .then(({ user }) => {
-                    setUser({
-                        email: user.email,
-                        id: user.uid,
-                        token: user.accessToken,
-                    });
-                    setIsUserAuth(true);
-                    reset();
-                    push('/home');
-                }).catch(() => { setLogInError('Incorrect email or password') })
+            onLogin(data.loginEmail, data.loginPass);
         }
     }
 
@@ -49,7 +57,6 @@ const LogIn = () => {
 
     return (
         <>
-            {isUserAuth && <Redirect to="/home" />}
             <div className="flex flex-wrap min-h-screen w-full content-center justify-center bg-gray-200 py-10">
 
                 {/* Login component */}

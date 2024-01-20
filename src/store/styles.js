@@ -24,7 +24,7 @@ export const profile = {
     profileImage: 'cursor-pointer rounded-full',
     info: 'flex flex-col',
     email: 'text-black/70',
-    link: 'flex justify-start items-center gap-4 p-2 px-4 m-0 transition-all duration-300 ease-in-out hover:bg-black/10',
+    link: 'flex justify-start items-center gap-4 p-2 px-4 m-0 transition-all duration-300 ease-in-out hover:bg-black/10 cursor-pointer',
     i: 'w-4 text-black/60'
 };
 

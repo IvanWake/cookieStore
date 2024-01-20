@@ -1,6 +1,9 @@
 import React from "react";
 import { profile } from "../../store/styles";
+import { auth } from "../../firebase";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { signOut } from 'firebase/auth';
+import { useAuth } from "../../store/auth-store";
 import {
     faListUl,
     faMapLocationDot,
@@ -8,6 +11,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const ProfileMenu = (props) => {
+    const setIsUserAuth = useAuth(state => state.setIsUserAuth);
+
+    const handleLogOut = () => {
+        setIsUserAuth(false);
+        signOut(auth);
+    }
     return (
         <div className={profile.profileWrapper}>
             <div className={profile.profileInfo}>
@@ -20,7 +29,7 @@ const ProfileMenu = (props) => {
             </div>
             <div className={profile.link}><FontAwesomeIcon icon={faListUl} className={profile.i} /> My orders</div>
             <div className={profile.link}><FontAwesomeIcon icon={faMapLocationDot} className={profile.i} /> My addresses</div>
-            <div className={profile.link}><FontAwesomeIcon icon={faArrowRightFromBracket} className={profile.i} /> Log out</div>
+            <div className={profile.link} onClick={handleLogOut}><FontAwesomeIcon icon={faArrowRightFromBracket} className={profile.i} /> Log out</div>
         </div>
     );
 }

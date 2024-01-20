@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../store/auth-store';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase';
 import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -16,6 +17,10 @@ const SignUp = () => {
     const setIsUserAuth = useAuth(state => state.setIsUserAuth);
     const { push } = useHistory();
 
+    useEffect(() => {
+        isUserAuth && push("/home");
+    }, [isUserAuth]);
+
     const {
         register,
         handleSubmit,
@@ -26,7 +31,6 @@ const SignUp = () => {
     })
 
     const onSubmitHandler = (data) => {
-        const auth = getAuth();
         if (isValid) {
             createUserWithEmailAndPassword(auth, data.signUpEmail, data.signUpPass)
                 .then(({ user }) => {
