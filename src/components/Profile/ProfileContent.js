@@ -12,7 +12,6 @@ const ProfileContent = () => {
             {
                 isUserLoading ? isUserAuth ? <Profile /> : <AuthButtons /> : <Preloader />
             }
-
         </>
     );
 }
