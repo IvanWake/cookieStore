@@ -13,6 +13,7 @@ import {
 const ProfileMenu = (props) => {
     const setIsUserAuth = useAuth(state => state.setIsUserAuth);
 
+
     const handleLogOut = () => {
         setIsUserAuth(false);
         signOut(auth);

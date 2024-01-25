@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { fetchLocalProducts } from '../../service/cart';
+import { useAuth } from '../../store/auth-store';
 import { useCart } from "../../store/cart-store";
 import { motion } from "framer-motion";
 import { setProducts } from '../../service/cart';
@@ -11,7 +12,11 @@ const Product = (props) => {
     const [btnStyles, setBtnStyles] = useState(products.productBtn);
     const [btnContent, setBtnContent] = useState('Add to Cart');
     const [productCounter, setProductCounter] = useState(1);
+
     const cartProductsLocal = useCart(state => state.cartProductsLocalHandler);
+
+    // User Auth or no
+    const isUserAuth = useAuth(state => state.isUserAuth);
 
     const addToCartHandler = () => {
 
@@ -38,8 +43,12 @@ const Product = (props) => {
             chlien: 1,
         }
         //Set Product
-        setProducts(productsList, addingItem, props.id, productCounter);
-        cartProductsLocal();
+        if (isUserAuth) {
+            return;
+        } else {
+            setProducts(productsList, addingItem, props.id, productCounter);
+            cartProductsLocal();
+        }
 
         setTimeout(function () {
             setBtnContent('Add to Cart');

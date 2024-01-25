@@ -3,22 +3,26 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useAuth } from "./store/auth-store";
+import { useCart } from "./store/cart-store";
+import { useHistory } from 'react-router-dom';
 import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
 import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
-import { useHistory } from 'react-router-dom';
 
 const App = () => {
     // Задаём юзера 
     const setUser = useAuth(state => state.setUserData);
+    const userData = useAuth(state => state.userData);
 
-    // Ставим статус залогинен или нет
-    const isUserAuth = useAuth(state => state.isUserAuth);
+
+    // Подгрузка данных 
     const setIsUserAuth = useAuth(state => state.setIsUserAuth);
+    const setCartProductsAuthUser = useCart(state => state.setCartProductsAuthUser);
+    const cartProductsAuthUser = useCart(state => state.cartProductsAuthUser);
+
     // Для прогрузки
     const setIsUserLoading = useAuth(state => state.setIsUserLoading);
-
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {

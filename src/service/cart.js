@@ -1,3 +1,4 @@
+
 export const fetchLocalProducts = () => {
     const storageLength = localStorage.length;
     let productsCart = [];
@@ -47,7 +48,7 @@ export const setProducts = (productsList, addingItem, id, productCounter) => {
     })
 
     let existingProduct = productsList[existingProducts];
-    
+
     let updatedProduct;
     let updetedProductObj;
     let amount, price;
@@ -72,3 +73,15 @@ export const setProducts = (productsList, addingItem, id, productCounter) => {
     }
 
 }
+
+// export const setProductsDB = () => {
+//     const db = getDatabase();
+//     set(ref(db, 'carts/' + userId), {
+//         product: productName,
+//         img: img,
+//         price: price,
+//         amount: amount,
+//         total: price * amount,
+//         desc: desc
+//     });
+// }
