@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { fetchLocalProducts } from '../../service/cart';
+import { fetchLocalProducts, setProductsDB, setProducts } from '../../service/cart';
 import { useAuth } from '../../store/auth-store';
 import { useCart } from "../../store/cart-store";
 import { motion } from "framer-motion";
-import { setProducts } from '../../service/cart';
 import { products } from "../../store/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -13,10 +12,16 @@ const Product = (props) => {
     const [btnContent, setBtnContent] = useState('Add to Cart');
     const [productCounter, setProductCounter] = useState(1);
 
+    // Non Auth User
     const cartProductsLocal = useCart(state => state.cartProductsLocalHandler);
 
-    // User Auth or no
+    // Auth User
+    const setCartProductsAuthUser = useCart(state => state.setCartProductsAuthUser);
+    const cartProductsAuthUser = useCart(state => state.cartProductsAuthUser);
+
+    // User
     const isUserAuth = useAuth(state => state.isUserAuth);
+    const userData = useAuth(state => state.userData);
 
     const addToCartHandler = () => {
 
@@ -32,7 +37,7 @@ const Product = (props) => {
         // Get Products (localStorage)
         const productsList = fetchLocalProducts().filteredProducts;
 
-        const addingItem = {
+        const addingItem = [{
             id: props.id,
             image: props.image,
             name: props.name,
@@ -41,10 +46,13 @@ const Product = (props) => {
             desc: props.description,
             total: props.price * productCounter,
             chlien: 1,
-        }
+        }]
+
         //Set Product
         if (isUserAuth) {
-            return;
+            setCartProductsAuthUser(addingItem);
+            console.log(cartProductsAuthUser);
+            // setProductsDB(, userData.id);
         } else {
             setProducts(productsList, addingItem, props.id, productCounter);
             cartProductsLocal();

@@ -1,3 +1,5 @@
+import { addDoc, collection, setDoc, doc } from "firebase/firestore";
+import { dbFirestore } from "../firebase";
 
 export const fetchLocalProducts = () => {
     const storageLength = localStorage.length;
@@ -39,6 +41,12 @@ export const getTotalAmount = () => {
     return {
         totalAmount,
     }
+}
+
+export const setProductsDB = async (products, userId) => {
+    // const userCartCollectionRef = collection(dbFirestore, "carts");
+    // await addDoc(userCartCollectionRef, );
+    await setDoc(doc(dbFirestore, "carts", userId), { cart: products });
 }
 
 export const setProducts = (productsList, addingItem, id, productCounter) => {

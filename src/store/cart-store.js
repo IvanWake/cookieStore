@@ -10,7 +10,7 @@ export const useCart = create(set => ({
         return { cartProductsLocal:  state.cartProductsLocal + 1}
     }),
     cartProductsAuthUser: [],
-    setCartProductsAuthUser: (items) => set(state => {
-        return { cartProductsAuthUser: items };
+    setCartProductsAuthUser: (item) => set(state => {
+        return  { cartProductsAuthUser: [item, ...state.cartProductsAuthUser] };
     })
 }))

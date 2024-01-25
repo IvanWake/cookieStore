@@ -12,7 +12,6 @@ import CartProductsList from "./CartProductsList";
 const Cart = () => {
     const [cartItems, setCartItems] = useState();
     const productInStorage = useCart(state => state.cartProductsLocal);
-    const cartProductsAuthUser = useCart(state => state.cartProductsAuthUser);
     const setCartProductsAuthUser = useCart(state => state.setCartProductsAuthUser);
 
     const isUserAuth = useAuth(state => state.isUserAuth);
@@ -20,14 +19,15 @@ const Cart = () => {
     // DataBase
     const userData = useAuth(state => state.userData);
 
-    const userCartCollectionRef = collection(dbFirestore, "carts");
 
     useEffect(() => {
         const getUserCart = async () => {
             try {
                 const docRef = doc(dbFirestore, "carts", userData.id);
                 const docSnap = await getDoc(docRef);
+
                 setCartItems(docSnap.data());
+                setCartProductsAuthUser(docSnap.data());
             } catch(error) {
                 console.log(error);
             }
