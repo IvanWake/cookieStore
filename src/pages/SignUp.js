@@ -4,8 +4,9 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Link, Redirect, useHistory } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const SignUp = () => {
     const [passIsVisible, setPassIsVisible] = useState(false);
@@ -52,7 +53,12 @@ const SignUp = () => {
     }
 
     return (
-        <>
+        <motion.div
+            initial={{opacity: 0}}
+            animate={{height: 'auto', opacity: 1}}
+            style={{overflow: 'hidden'}}
+            transition={{ duration: .5 }}
+        >
             {isUserAuth && <Redirect to="/home" />}
             <div className="flex flex-wrap min-h-screen w-full content-center justify-center bg-gray-200 py-10">
 
@@ -123,7 +129,7 @@ const SignUp = () => {
                                 <div className="mb-3 flex flex-wrap content-center">
                                     <input id="remember" type="checkbox" className="mr-1 checked:bg-[#ff9f5a]" />
                                     <label htmlFor="remember" className="mr-auto text-xs font-semibold">I agree privacy policy</label>
-                                    <button className="text-xs font-semibold text-[#ff9f5a]">Forgot password?</button>
+                                    {/*<button className="text-xs font-semibold text-[#ff9f5a]">Forgot password?</button>*/}
                                 </div>
 
                                 <div className="mb-3">
@@ -145,12 +151,15 @@ const SignUp = () => {
                                     <p className="text-[#ff5a5a] text-[.8rem] absolute top-[30px] left-1/2 transform -translate-x-1/2">{signUpError}</p>
                                 }
                             </div>
+                            <div className="space-x-4">
+                                <Link to="/home"><FontAwesomeIcon icon={faArrowLeft} /> Home</Link>
+                            </div>
                         </div>
                     </div>
 
                 </div>
             </div>
-        </>
+        </motion.div>
     );
 }
 

@@ -14,11 +14,9 @@ const Product = (props) => {
 
     // Non Auth User
     const cartProductsLocal = useCart(state => state.cartProductsLocalHandler);
-
     // Auth User
     const setCartProductsAuthUser = useCart(state => state.setCartProductsAuthUser);
     const cartProductsAuthUser = useCart(state => state.cartProductsAuthUser);
-
     // User
     const isUserAuth = useAuth(state => state.isUserAuth);
     const userData = useAuth(state => state.userData);
@@ -83,10 +81,10 @@ const Product = (props) => {
             initial={{height: 0, opacity: 0}}
             animate={{height: 'auto', opacity: 1}}
             style={{overflow: 'hidden'}}
-            transition={{duration: 0.9, ease: 'circInOut'}}
+            transition={{duration: .4, ease: 'circInOut'}}
             className={products.product} key={props.key}>
             <div className={products.productCol}>
-                <img src={props.image} alt="productImage" className="product-image" />
+                <img src={props.image} alt="productImage" className="product-image" width="125" height="125"/>
                 <div className={products.productCount}>
                     <button className={products.editCount} onClick={decreaseCounterHandler}>
                         <FontAwesomeIcon icon={faMinus} />

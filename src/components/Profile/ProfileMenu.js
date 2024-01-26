@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from 'framer-motion';
 import { profile } from "../../store/styles";
 import { auth } from "../../firebase";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,7 +20,13 @@ const ProfileMenu = (props) => {
         signOut(auth);
     }
     return (
-        <div className={profile.profileWrapper}>
+        <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            style={{overflow: 'hidden'}}
+            transition={{ duration: .3 }}
+            className={profile.profileWrapper}>
             <div className={profile.profileInfo}>
                 <img className={profile.profileImage}
                     src="https://img.cookiestore.ru/Cookies/cookie.png"
@@ -31,7 +38,7 @@ const ProfileMenu = (props) => {
             <div className={profile.link}><FontAwesomeIcon icon={faListUl} className={profile.i} /> My orders</div>
             <div className={profile.link}><FontAwesomeIcon icon={faMapLocationDot} className={profile.i} /> My addresses</div>
             <div className={profile.link} onClick={handleLogOut}><FontAwesomeIcon icon={faArrowRightFromBracket} className={profile.i} /> Log out</div>
-        </div>
+        </motion.div>
     );
 }
 

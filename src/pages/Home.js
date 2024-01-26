@@ -1,5 +1,5 @@
 import { useCart } from "../store/cart-store";
-import { AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Header from "../components/Layout/Header";
 import Main from "../components/Layout/Main";
 import MainWrapper from "../components/Layout/MainWrapper";
@@ -11,7 +11,12 @@ const Home = () => {
     const isCartVisible = useCart(state => state.isCartVisible);
 
     return (
-        <>
+        <motion.div
+            initial={{opacity: 0}}
+            animate={{height: 'auto', opacity: 1}}
+            style={{overflow: 'hidden'}}
+            transition={{ duration: .3 }}
+        >
             <Header />
             <Main>
                 <MainWrapper>
@@ -22,7 +27,7 @@ const Home = () => {
                     {isCartVisible && <Cart />}
                 </AnimatePresence>
             </Main>
-        </>
+        </motion.div>
     );
 }
 

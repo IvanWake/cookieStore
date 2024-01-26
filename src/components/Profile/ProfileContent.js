@@ -1,4 +1,5 @@
 import { useAuth } from '../../store/auth-store';
+import { AnimatePresence } from 'framer-motion';
 import AuthButtons from '../Auth/AuthButtons';
 import Preloader from '../Layout/Preloader';
 import Profile from './Profile';
@@ -10,7 +11,18 @@ const ProfileContent = () => {
     return (
         <>
             {
-                isUserLoading ? isUserAuth ? <Profile /> : <AuthButtons /> : <Preloader />
+                isUserLoading ?
+                    isUserAuth ?
+                        <AnimatePresence>
+                            <Profile />
+                        </AnimatePresence> :
+                        <AnimatePresence>
+                            <AuthButtons/>
+                        </AnimatePresence> :
+                    <AnimatePresence>
+                        <Preloader/>
+                    </AnimatePresence>
+
             }
         </>
     );

@@ -51,6 +51,7 @@ export const products = {
     productBtn: 'rounded-[0.4rem] p-2 border-solid border-2 border-[#E6D9C9] bg-none text-[#D99C70] font-medium hover:bg-[#FF9F5A] hover:text-white transition-all duration-300 ease-in-out',
     productAdded: 'rounded-[0.4rem] p-2 border-solid border-2 border-[#E6D9C9] bg-[#FF9F5A] text- font-medium text-white',
     productCount: 'flex items-center justify-around gap-2 rounded-[0.4rem] p-2 bg-[#f6f6f6]',
+    productImage: '',
     editCount: 'flex justify-center items-center w-4 h-4 rounded-1/2 transition-all duration-300 ease-in-out',
 };
 
