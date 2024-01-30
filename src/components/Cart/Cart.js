@@ -16,9 +16,6 @@ const Cart = (props) => {
   const cartProductsAuthUser = useCart(state => state.cartProductsAuthUser);
   const setCartProductsAuthUser = useCart(state => state.setCartProductsAuthUser);
 
-  const setCartProductsNonAuthUser = useCart(state => state.setCartProductsNonAuthUser);
-  const cartProductsNonAuthUser = useCart(state => state.cartProductsNonAuthUser);
-
   const isUserAuth = useAuth(state => state.isUserAuth);
 
   // DataBase

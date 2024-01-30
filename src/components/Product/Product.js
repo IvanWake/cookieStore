@@ -19,8 +19,8 @@ const Product = (props) => {
   // Non Auth User
   const cartProductsLocal = useCart(state => state.cartProductsLocalHandler);
   // Auth User
-  const setCartProductsAuthUser = useCart(
-      state => state.setCartProductsAuthUser);
+  const updateCartProductsAuthUser = useCart(
+      state => state.updateCartProductsAuthUser);
   const cartProductsAuthUser = useCart(state => state.cartProductsAuthUser);
   // User
   const isUserAuth = useAuth(state => state.isUserAuth);
@@ -53,7 +53,7 @@ const Product = (props) => {
 
     //Set Product
     if (isUserAuth) {
-      setCartProductsAuthUser(addingItem);
+      updateCartProductsAuthUser(addingItem);
     } else {
       setProducts(productsList, addingItem, props.id, productCounter);
       cartProductsLocal();
