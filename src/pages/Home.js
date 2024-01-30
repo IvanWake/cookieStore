@@ -13,21 +13,7 @@ import ProductList from "../components/Product/ProductList";
 import Categories from "../components/Categories/Categories";
 
 const Home = () => {
-    const [cartItems, setCartItems] = useState();
     const isCartVisible = useCart(state => state.isCartVisible);
-    const userData = useAuth(state => state.userData);
-
-    const cartProductsAuthUser = useCart(state => state.cartProductsAuthUser);
-    const setCartProductsAuthUser = useCart(state => state.setCartProductsAuthUser);
-
-    const setCartProductsNonAuthUser = useCart(state => state.setCartProductsNonAuthUser);
-    const cartProductsNonAuthUser = useCart(state => state.cartProductsNonAuthUser);
-
-    const isUserAuth = useAuth(state => state.isUserAuth);
-
-
-
-
 
     return (
         <motion.div

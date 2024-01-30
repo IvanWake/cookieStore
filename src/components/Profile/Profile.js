@@ -10,7 +10,7 @@ const Profile = () => {
     const setIsProfileVisibleHandler = () => setIsProfileVisible(prevState => !prevState);
 
     return (
-          <div className={header.profile} onClick={setIsProfileVisibleHandler}>
+          <div className={header.profile}>
             <div className={header.hr}></div>
             <motion.img
                 initial={{height: 0, opacity: 0}}
@@ -19,7 +19,9 @@ const Profile = () => {
                 transition={{ duration: .5 }}
                 className={header.profileImage}
                 src="https://img.cookiestore.ru/Cookies/cookie.png"
-                width="32" alt="profile"/>
+                width="32" alt="profile"
+                onClick={setIsProfileVisibleHandler}
+            />
             {
                 isProfileVisible &&
                 <AnimatePresence><ProfileMenu email={user.email}/></AnimatePresence>
