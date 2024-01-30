@@ -13,13 +13,10 @@ import SignUp from './pages/SignUp';
 const App = () => {
   // Задаём юзера
   const setUser = useAuth(state => state.setUserData);
-  const userData = useAuth(state => state.userData);
 
   // Подгрузка данных
   const setIsUserAuth = useAuth(state => state.setIsUserAuth);
-  const setCartProductsAuthUser = useCart(
-      state => state.setCartProductsAuthUser);
-  const cartProductsAuthUser = useCart(state => state.cartProductsAuthUser);
+  const setCartProductsAuthUser = useCart(state => state.setCartProductsAuthUser);
 
   // Для прогрузки
   const setIsUserLoading = useAuth(state => state.setIsUserLoading);

@@ -9,8 +9,7 @@ export const useCart = create(set => ({
     cartProductsLocalHandler: () => set(state => {
         return { cartProductsLocal:  state.cartProductsLocal + 1}
     }),
-    cartProductsAuthUser: [],
     setCartProductsAuthUser: (item) => set(state => {
         return  { cartProductsAuthUser: [item, ...state.cartProductsAuthUser] };
-    })
+    }),
 }))
