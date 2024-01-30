@@ -27,10 +27,8 @@ export const getTotalPrice = (productsList) => {
     }
 }
 
-export const getTotalAmount = () => {
+export const getTotalAmount = (productsList) => {
     let totalAmount = 0;
-
-    let productsList = fetchLocalProducts().filteredProducts;
 
     for (const key in productsList) {
         totalAmount += productsList[key].amount;
