@@ -20,7 +20,7 @@ const ProfileContent = () => {
                             <AuthButtons/>
                         </AnimatePresence> :
                     <AnimatePresence>
-                        <Preloader/>
+                        <Preloader width={'32px'} />
                     </AnimatePresence>
 
             }

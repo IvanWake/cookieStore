@@ -1,8 +1,8 @@
 import preloader from '../../assets/tail-spin.svg';
 
-const Preloader = () => {
+const Preloader = (props) => {
     return (
-        <img src={preloader} width="32px" />
+        <img src={preloader} width={props.width} />
     );
 }
 

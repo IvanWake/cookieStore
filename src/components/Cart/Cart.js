@@ -1,7 +1,6 @@
 import {doc, getDoc} from 'firebase/firestore';
 import {useState, useEffect} from 'react';
 import {dbFirestore} from '../../firebase';
-
 import {useAuth} from '../../store/auth-store';
 import {useCart} from '../../store/cart-store';
 import {cart} from '../../store/styles';
@@ -21,21 +20,8 @@ const Cart = (props) => {
   // DataBase
   const userData = useAuth(state => state.userData);
 
-  const getUserCart = async () => {
-    try {
-      const docRef = doc(dbFirestore, 'carts', userData.id);
-      const docSnap = await getDoc(docRef);
-
-      setCartProductsAuthUser(docSnap.data().cart);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    if (isUserAuth) {
-      getUserCart();
-    } else {
+    if (!isUserAuth) {
       setCartItems(fetchLocalProducts().filteredProducts);
     }
   }, [isUserAuth, productInStorage])

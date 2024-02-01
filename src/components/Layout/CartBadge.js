@@ -7,8 +7,12 @@ import { header } from '../../store/styles.js';
 
 const CartBadge = () => {
     const [totalAmount, setTotalAmount] = useState();
+    
+    // Carts Auth and Non Auth User
     const cartProducts = useCart(state => state.cartProductsLocal);
     const cartProductsAuthUser = useCart(state => state.cartProductsAuthUser);
+
+    // is User Auth
     const isUserAuth = useAuth(state => state.isUserAuth);
 
     useEffect(() => {
@@ -19,9 +23,10 @@ const CartBadge = () => {
         }
     }, [cartProducts, isUserAuth, cartProductsAuthUser])
 
-
     return (
-        <span className={header.cartBadge}>{totalAmount}</span>
+        <>
+            <span className={header.cartBadge}>{totalAmount}</span>
+        </>
     );
 }
 
