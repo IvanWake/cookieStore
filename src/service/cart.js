@@ -1,4 +1,4 @@
-import { addDoc, collection, setDoc, doc } from "firebase/firestore";
+import { updateDoc, doc } from "firebase/firestore";
 import { dbFirestore } from "../firebase";
 
 export const fetchLocalProducts = () => {
@@ -39,12 +39,6 @@ export const getTotalAmount = (productsList) => {
     }
 }
 
-export const setProductsDB = async (products, userId) => {
-    // const userCartCollectionRef = collection(dbFirestore, "carts");
-    // await addDoc(userCartCollectionRef, );
-    await setDoc(doc(dbFirestore, "carts", userId), { cart: products });
-}
-
 export const setProducts = (productsList, addingItem, id, productCounter) => {
 
     const existingProducts = productsList.findIndex(item => {
@@ -78,14 +72,14 @@ export const setProducts = (productsList, addingItem, id, productCounter) => {
 
 }
 
-// export const setProductsDB = () => {
-//     const db = getDatabase();
-//     set(ref(db, 'carts/' + userId), {
-//         product: productName,
-//         img: img,
-//         price: price,
-//         amount: amount,
-//         total: price * amount,
-//         desc: desc
-//     });
-// }
+export const updateUserCart = async (id, items) => {
+    const userCart = {
+        cart: items,
+    }
+    try {
+        const cartDoc = doc(dbFirestore, 'carts', id);
+        await updateDoc(cartDoc, userCart);
+    } catch (error) {
+        console.log(error)
+    }
+};

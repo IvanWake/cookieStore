@@ -1,15 +1,15 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import {
   fetchLocalProducts,
-  setProductsDB,
   setProducts,
+  updateUserCart,
 } from '../../service/cart';
-import {useAuth} from '../../store/auth-store';
-import {useCart} from '../../store/cart-store';
-import {motion} from 'framer-motion';
-import {products} from '../../store/styles';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faMinus, faPlus} from '@fortawesome/free-solid-svg-icons';
+import { useAuth } from '../../store/auth-store';
+import { useCart } from '../../store/cart-store';
+import { motion } from 'framer-motion';
+import { products } from '../../store/styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const Product = (props) => {
   const [btnStyles, setBtnStyles] = useState(products.productBtn);
@@ -18,10 +18,13 @@ const Product = (props) => {
 
   // Non Auth User
   const cartProductsLocal = useCart(state => state.cartProductsLocalHandler);
-  // Auth User
+
+  // Cart Auth User
   const updateCartProductsAuthUser = useCart(
-      state => state.updateCartProductsAuthUser);
-  const cartProductsAuthUser = useCart(state => state.cartProductsAuthUser);
+    state => state.updateCartProductsAuthUser);
+  const cartProductsAuthUser = useCart(
+    state => state.cartProductsAuthUser);
+
   // User
   const isUserAuth = useAuth(state => state.isUserAuth);
   const userData = useAuth(state => state.userData);
@@ -51,15 +54,16 @@ const Product = (props) => {
       chlien: 1,
     };
 
-    //Set Product
+    //Set Product and Update Products
     if (isUserAuth) {
-      updateCartProductsAuthUser(addingItem);
+      updateCartProductsAuthUser(addingItem, productCounter);
+      updateUserCart(userData.id, cartProductsAuthUser);
     } else {
       setProducts(productsList, addingItem, props.id, productCounter);
       cartProductsLocal();
     }
 
-    setTimeout(function() {
+    setTimeout(() => {
       setBtnContent('Add to Cart');
       setBtnStyles(products.productBtn);
     }, 1000);
@@ -80,42 +84,42 @@ const Product = (props) => {
   };
 
   return (
-      <motion.div
-          initial={{height: 0, opacity: 0}}
-          animate={{height: 'auto', opacity: 1}}
-          style={{overflow: 'hidden'}}
-          transition={{duration: .4, ease: 'circInOut'}}
-          className={products.product} key={props.key}>
-        <div className={products.productCol}>
-          <img src={props.image} alt="productImage" className="product-image"
-               width="125" height="125"/>
-          <div className={products.productCount}>
-            <button className={products.editCount}
-                    onClick={decreaseCounterHandler}>
-              <FontAwesomeIcon icon={faMinus}/>
-            </button>
-            <div className="counter">{productCounter}</div>
-            <button className={products.editCount}
-                    onClick={increaseCounterHandler}><FontAwesomeIcon
-                icon={faPlus}/>
-            </button>
+    <motion.div
+      initial={{ height: 0, opacity: 0 }}
+      animate={{ height: 'auto', opacity: 1 }}
+      style={{ overflow: 'hidden' }}
+      transition={{ duration: .4, ease: 'circInOut' }}
+      className={products.product} key={props.key}>
+      <div className={products.productCol}>
+        <img src={props.image} alt="productImage" className="product-image"
+          width="125" height="125" />
+        <div className={products.productCount}>
+          <button className={products.editCount}
+            onClick={decreaseCounterHandler}>
+            <FontAwesomeIcon icon={faMinus} />
+          </button>
+          <div className="counter">{productCounter}</div>
+          <button className={products.editCount}
+            onClick={increaseCounterHandler}><FontAwesomeIcon
+              icon={faPlus} />
+          </button>
+        </div>
+      </div>
+      <div className={products.productCol + ' w-full'}>
+        <div className={products.productDesc}>
+          <div className={products.productDescHeader}>
+            <div className={products.productName}>{props.name}</div>
+            <div className={products.productPrice}>$ {props.price}</div>
+          </div>
+          <div className={products.productDescText}>
+            {props.description}
           </div>
         </div>
-        <div className={products.productCol + ' w-full'}>
-          <div className={products.productDesc}>
-            <div className={products.productDescHeader}>
-              <div className={products.productName}>{props.name}</div>
-              <div className={products.productPrice}>$ {props.price}</div>
-            </div>
-            <div className={products.productDescText}>
-              {props.description}
-            </div>
-          </div>
 
-          <button className={btnStyles}
-                  onClick={addToCartHandler}>{btnContent}</button>
-        </div>
-      </motion.div>
+        <button className={btnStyles}
+          onClick={addToCartHandler}>{btnContent}</button>
+      </div>
+    </motion.div>
   );
 };
 

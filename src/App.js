@@ -16,6 +16,7 @@ const App = () => {
 
   // Подгрузка данных
   const setIsUserAuth = useAuth(state => state.setIsUserAuth);
+  const isUserAuth = useAuth(state => state.isUserAuth);
   const setCartProductsAuthUser = useCart(state => state.setCartProductsAuthUser);
 
   // Для прогрузки

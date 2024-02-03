@@ -1,6 +1,4 @@
-import {doc, getDoc} from 'firebase/firestore';
 import {useState, useEffect} from 'react';
-import {dbFirestore} from '../../firebase';
 import {useAuth} from '../../store/auth-store';
 import {useCart} from '../../store/cart-store';
 import {cart} from '../../store/styles';
@@ -9,16 +7,13 @@ import {fetchLocalProducts} from '../../service/cart';
 import CartFooter from './CartFooter';
 import CartProductsList from './CartProductsList';
 
-const Cart = (props) => {
+const Cart = () => {
   const [cartItems, setCartItems] = useState();
   const productInStorage = useCart(state => state.cartProductsLocal);
   const cartProductsAuthUser = useCart(state => state.cartProductsAuthUser);
   const setCartProductsAuthUser = useCart(state => state.setCartProductsAuthUser);
 
   const isUserAuth = useAuth(state => state.isUserAuth);
-
-  // DataBase
-  const userData = useAuth(state => state.userData);
 
   useEffect(() => {
     if (!isUserAuth) {

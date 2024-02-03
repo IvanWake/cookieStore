@@ -51,7 +51,7 @@ const ProductList = () => {
     let content;
 
     if (isProductsLoading) {
-        content = <div className="flex items-center justify-center flex-center"><Preloader width={'300px'} /></div>
+        content = <div className="flex items-center justify-center flex-center"><Preloader width={'100px'} /></div>
     } else {
         content = productsListFiltered?.map(product => (
             <Product

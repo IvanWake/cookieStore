@@ -35,7 +35,7 @@ const Home = () => {
         if (isUserAuth) {
             getUserCart();
         }
-    }, [isUserAuth])
+    }, [isUserAuth, userData])
 
     return (
         <motion.div
