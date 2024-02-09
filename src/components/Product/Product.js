@@ -3,6 +3,7 @@ import {
   fetchLocalProducts,
   setProducts,
   updateUserCart,
+  setUserCart
 } from '../../service/cart';
 import { useAuth } from '../../store/auth-store';
 import { useCart } from '../../store/cart-store';
@@ -16,14 +17,7 @@ const Product = (props) => {
   const [btnContent, setBtnContent] = useState('Add to Cart');
   const [productCounter, setProductCounter] = useState(1);
 
-  // Non Auth User
-  const cartProductsLocal = useCart(state => state.cartProductsLocalHandler);
-
-  // Cart Auth User
-  const updateCartProductsAuthUser = useCart(
-    state => state.updateCartProductsAuthUser);
-  const cartProductsAuthUser = useCart(
-    state => state.cartProductsAuthUser);
+  const { cartProductsLocalHandler, updateCartProductsAuthUser, cartProductsAuthUser } = useCart();
 
   // User
   const isUserAuth = useAuth(state => state.isUserAuth);
@@ -56,11 +50,15 @@ const Product = (props) => {
 
     //Set Product and Update Products
     if (isUserAuth) {
-      updateCartProductsAuthUser(addingItem, productCounter);
-      updateUserCart(userData.id, cartProductsAuthUser);
+      setUserCart(userData.id, cartProductsAuthUser);
+
+      if (cartProductsAuthUser.length > 0) {
+        updateCartProductsAuthUser(addingItem, productCounter);
+        updateUserCart(userData.id, cartProductsAuthUser);
+      }
     } else {
       setProducts(productsList, addingItem, props.id, productCounter);
-      cartProductsLocal();
+      cartProductsLocalHandler();
     }
 
     setTimeout(() => {

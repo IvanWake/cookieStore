@@ -12,16 +12,17 @@ export const useCart = create(set => ({
     cartProductsAuthUser: [],
     updateCartProductsAuthUser: (addingItem, productCounter) => set(state => {
 
+        let updatedProducts = [...state.cartProductsAuthUser];
+
         const productsList = [...state.cartProductsAuthUser];
 
         const existingProducts = productsList.findIndex(item => {
             return item.name === addingItem.name;
         })
 
-        let existingProduct = state.cartProductsAuthUser[existingProducts];
+        let existingProduct = updatedProducts[existingProducts];
 
         let updatedProduct;
-        let updatedProducts = [...state.cartProductsAuthUser];
         let updatedProductObj;
         let amount, price;
 

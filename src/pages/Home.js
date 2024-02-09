@@ -27,8 +27,7 @@ const Home = () => {
             const docSnap = await getDoc(docRef);
 
             setCartProductsAuthUser(docSnap.data().cart);
-        } catch (error) {
-        }
+        } catch (error) {}
     };
 
     useEffect(() => {
