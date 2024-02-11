@@ -15,6 +15,7 @@ export const fetchLocalProducts = () => {
     }
 }
 
+
 export const getTotalPrice = (productsList) => {
     let totalPrice = 0;
 

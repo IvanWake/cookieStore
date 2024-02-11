@@ -25,8 +25,9 @@ const Home = () => {
         try {
             const docRef = doc(dbFirestore, 'carts', userData.id);
             const docSnap = await getDoc(docRef);
-
-            setCartProductsAuthUser(docSnap.data().cart);
+            if (docSnap.data().cart) {
+                setCartProductsAuthUser(docSnap.data().cart);
+            }
         } catch (error) {}
     };
 

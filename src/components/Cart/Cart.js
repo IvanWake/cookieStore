@@ -3,23 +3,22 @@ import {useAuth} from '../../store/auth-store';
 import {useCart} from '../../store/cart-store';
 import {cart} from '../../store/styles';
 import {motion, AnimatePresence} from 'framer-motion';
-import {fetchLocalProducts} from '../../service/cart';
+import {fetchLocalProducts, updateUserCart} from '../../service/cart';
 import CartFooter from './CartFooter';
 import CartProductsList from './CartProductsList';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState();
-  const productInStorage = useCart(state => state.cartProductsLocal);
-  const cartProductsAuthUser = useCart(state => state.cartProductsAuthUser);
-  const setCartProductsAuthUser = useCart(state => state.setCartProductsAuthUser);
 
-  const isUserAuth = useAuth(state => state.isUserAuth);
+  const { cartProductsAuthUser, cartProductsLocal } = useCart();
+  const {isUserAuth, userData} = useAuth();
 
   useEffect(() => {
     if (!isUserAuth) {
       setCartItems(fetchLocalProducts().filteredProducts);
     }
-  }, [isUserAuth, productInStorage])
+  }, [isUserAuth, cartProductsLocal]);
+
 
   return (
       <motion.div

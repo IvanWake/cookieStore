@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { updateUserCart } from "../service/cart";
 
 export const useCart = create(set => ({
     isCartVisible: false,
@@ -41,13 +42,10 @@ export const useCart = create(set => ({
             }
             updatedProducts[existingProducts] = updatedProductObj;
         } else {
-            updatedProduct = {
-                ...addingItem
-            }
-            updatedProducts = productsList.concat(updatedProduct);
+            updatedProducts = productsList.concat(addingItem);
         }
-        return { cartProductsAuthUser: updatedProducts };
 
+        return { cartProductsAuthUser: updatedProducts };
     }),
     setCartProductsAuthUser: (item) => set(state => {
         return { cartProductsAuthUser: item };

@@ -8,7 +8,7 @@ const Category = (props) => {
     if (props.name === props.selectedCategory) styles += category.categorySelected;
 
     return (
-        <div key={props.key} className={styles} onClick={onChangeCategoryHandler}>{props.name}</div>
+        <div key={props?.key} className={styles} onClick={onChangeCategoryHandler}>{props?.name}</div>
     )
 }
 
