@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import {
     deleteUserCart,
     fetchLocalProducts,
@@ -6,12 +6,12 @@ import {
     setUserCart, updateUserCart
 } from '../../service/cart';
 import { auth } from "../../firebase";
-import {useAuth} from '../../store/auth-store';
-import {useCart} from '../../store/cart-store';
-import {motion} from 'framer-motion';
-import {products} from '../../store/styles';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faMinus, faPlus} from '@fortawesome/free-solid-svg-icons';
+import { useAuth } from '../../store/auth-store';
+import { useCart } from '../../store/cart-store';
+import { motion } from 'framer-motion';
+import { products } from '../../store/styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const Product = (props) => {
     const [btnStyles, setBtnStyles] = useState(products.productBtn);

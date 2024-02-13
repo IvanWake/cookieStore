@@ -1,19 +1,21 @@
+import {useEffect, useState} from "react";
 import { fetchLocalProducts, getTotalPrice } from '../../service/cart';
 import { useAuth } from "../../store/auth-store";
 import { useCart } from '../../store/cart-store';
 import { cart } from "../../store/styles";
 
 const CartFooter = () => {
+    const [totalPrice, setTotalPrice] = useState()
     const isUserAuth = useAuth(state => state.isUserAuth);
     const cartProductsAuthUser = useCart(state => state.cartProductsAuthUser)
 
-    let totalPrice;
-
-    if (isUserAuth) {
-        totalPrice = `${getTotalPrice(cartProductsAuthUser).totalPrice.toFixed(2)}`;
-    } else {
-        totalPrice = `${getTotalPrice(fetchLocalProducts().filteredProducts).totalPrice.toFixed(2)}`;
-    }
+    useEffect(() => {
+        if (isUserAuth) {
+            setTotalPrice(`${getTotalPrice(cartProductsAuthUser).totalPrice.toFixed(2)}`);
+        } else {
+            setTotalPrice(`${getTotalPrice(fetchLocalProducts().filteredProducts).totalPrice.toFixed(2)}`);
+        }
+    }, [cartProductsAuthUser])
 
     return (
         <div className={cart.footer}>

@@ -8,7 +8,7 @@ import { faMinus, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 const CartProduct = (props) => {
 
     const { isUserAuth } = useAuth();
-    const { deleteCartProductsAuthUser } = useCart();
+    const { removeCartProductAuthUser, increaseCounterAuthUser, decreaseCounterAuthUser } = useCart();
 
     const item = {
         id: props.id,
@@ -22,13 +22,26 @@ const CartProduct = (props) => {
 
     // Counter and DeleteHandler
 
-    const increaseCounterHandler = () => props.onIncrease(item);
+    const increaseCounterHandler = () => {
+        if (isUserAuth) {
+            increaseCounterAuthUser(item.name);
+        } else {
+            props.onIncrease(item);
+        }
 
-    const decreaseCounterHandler = () => props.onDecrease(item);
+    };
+
+    const decreaseCounterHandler = () => {
+        if (isUserAuth) {
+            decreaseCounterAuthUser(item.name);
+        } else {
+            props.onDecrease(item);
+        }
+    };
 
     const removeProductHandler = () => {
         if (isUserAuth) {
-            deleteCartProductsAuthUser(item.name);
+            removeCartProductAuthUser(item.name);
         } else {
             props.onRemoveProduct(item)
         }

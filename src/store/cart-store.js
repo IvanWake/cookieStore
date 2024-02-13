@@ -1,14 +1,14 @@
-import { create } from 'zustand';
-import { updateUserCart } from "../service/cart";
+import {create} from 'zustand';
+import {updateUserCart} from "../service/cart";
 
 export const useCart = create(set => ({
     isCartVisible: false,
     changeVisibilty: (stateVisibility) => set(state => {
-        return { isCartVisible: stateVisibility };
+        return {isCartVisible: stateVisibility};
     }),
     cartProductsLocal: 1,
     cartProductsLocalHandler: () => set(state => {
-        return { cartProductsLocal: state.cartProductsLocal + 1 }
+        return {cartProductsLocal: state.cartProductsLocal + 1}
     }),
     cartProductsAuthUser: [],
     updateCartProductsAuthUser: (addingItem, productCounter) => set(state => {
@@ -45,12 +45,29 @@ export const useCart = create(set => ({
             updatedProducts = productsList.concat(addingItem);
         }
 
-        return { cartProductsAuthUser: updatedProducts };
+        return {cartProductsAuthUser: updatedProducts};
     }),
-    deleteCartProductsAuthUser: (item) => set(state => {
-        return { cartProductsAuthUser: state.cartProductsAuthUser.filter(product => product.name !== item )}
+    removeCartProductAuthUser: (itemName) => set(state => {
+        return {cartProductsAuthUser: state.cartProductsAuthUser.filter(product => product.name !== itemName)}
     }),
+    increaseCounterAuthUser: (itemName) => set(state => {
+        return {
+            cartProductsAuthUser: state.cartProductsAuthUser.map(product => {
+                if (product.name == itemName) {
+                    return {...product, amount: product.amount + 1}
+                }
+            })
+        }
+    }),
+    decreaseCounterAuthUser: (itemName) => set((state) => ({
+            cartProductsAuthUser: state.cartProductsAuthUser.map(product => {
+                if (product.name == itemName) {
+                    return { ...product, amount: product.amount - 1 }
+                }
+                return product;
+            })
+        })),
     setCartProductsAuthUser: (item) => set(state => {
-        return { cartProductsAuthUser: item };
+        return {cartProductsAuthUser: item};
     }),
 }))
