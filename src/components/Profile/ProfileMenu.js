@@ -5,6 +5,7 @@ import { auth } from "../../firebase";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signOut } from 'firebase/auth';
 import { useAuth } from "../../store/auth-store";
+import { useCart } from "../../store/cart-store";
 import {
     faListUl,
     faMapLocationDot,
@@ -12,13 +13,16 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const ProfileMenu = (props) => {
-    const setIsUserAuth = useAuth(state => state.setIsUserAuth);
-
+    const { setIsUserAuth, setUserData} = useAuth();
+    const { setCartProductsAuthUser } = useCart();
 
     const handleLogOut = () => {
         setIsUserAuth(false);
+        setUserData({});
+        setCartProductsAuthUser([]);
         signOut(auth);
     }
+
     return (
         <motion.div
             initial={{ height: 0, opacity: 0 }}
@@ -29,8 +33,8 @@ const ProfileMenu = (props) => {
             className={profile.profileWrapper}>
             <div className={profile.profileInfo}>
                 <img className={profile.profileImage}
-                    src="https://img.cookiestore.ru/Cookies/cookie.png"
-                    width="32" alt="profile" />
+                     src="https://img.cookiestore.ru/Cookies/cookie.png"
+                     width="32" alt="profile" />
                 <div className={profile.email}>
                     <div className={profile.email}>{props.email}</div>
                 </div>

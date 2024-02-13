@@ -22,7 +22,9 @@ const Product = (props) => {
     const { isUserAuth, userData} = useAuth();
 
     useEffect(() => {
-        updateUserCart(userData.id, cartProductsAuthUser);
+        if (cartProductsAuthUser.length > 0) {
+            updateUserCart(userData.id, cartProductsAuthUser);
+        }
     }, [cartProductsAuthUser])
 
     const addToCartHandler = async () => {
