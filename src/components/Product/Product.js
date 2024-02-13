@@ -29,7 +29,7 @@ const Product = (props) => {
             if (cartProductsAuthUser.length > 0) {
                 updateUserCart(userData.id, cartProductsAuthUser);
             } else {
-                deleteUserCart();
+                deleteUserCart(userData.id);
             }
         }
     }, [cartProductsAuthUser])

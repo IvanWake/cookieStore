@@ -1,11 +1,16 @@
-import { cart } from "../../store/styles";
 import { motion } from "framer-motion";
+import { useAuth } from "../../store/auth-store";
+import { useCart } from "../../store/cart-store";
+import { cart } from "../../store/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const CartProduct = (props) => {
 
-    const addingItem = {
+    const { isUserAuth } = useAuth();
+    const { deleteCartProductsAuthUser } = useCart();
+
+    const item = {
         id: props.id,
         image: props.image,
         name: props.name,
@@ -17,11 +22,17 @@ const CartProduct = (props) => {
 
     // Counter and DeleteHandler
 
-    const increaseCounterHandler = () => props.onIncrease(addingItem);
+    const increaseCounterHandler = () => props.onIncrease(item);
 
-    const decreaseCounterHandler = () => props.onDecrease(addingItem);
+    const decreaseCounterHandler = () => props.onDecrease(item);
 
-    const removeProductHandler = () => props.onRemoveProduct(addingItem);
+    const removeProductHandler = () => {
+        if (isUserAuth) {
+            deleteCartProductsAuthUser(item.name);
+        } else {
+            props.onRemoveProduct(item)
+        }
+    };
 
 
     return (

@@ -47,6 +47,9 @@ export const useCart = create(set => ({
 
         return { cartProductsAuthUser: updatedProducts };
     }),
+    deleteCartProductsAuthUser: (item) => set(state => {
+        return { cartProductsAuthUser: state.cartProductsAuthUser.filter(product => product.name !== item )}
+    }),
     setCartProductsAuthUser: (item) => set(state => {
         return { cartProductsAuthUser: item };
     }),
