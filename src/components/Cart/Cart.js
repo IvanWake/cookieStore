@@ -11,7 +11,7 @@ const Cart = () => {
   const [cartItems, setCartItems] = useState();
 
   const { cartProductsAuthUser, cartProductsLocal } = useCart();
-  const {isUserAuth, userData} = useAuth();
+  const { isUserAuth } = useAuth();
 
   useEffect(() => {
     if (!isUserAuth) {

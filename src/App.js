@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
-import {auth} from './firebase';
+import {auth, dbFirestore} from './firebase';
 import {onAuthStateChanged} from 'firebase/auth';
 import {useAuth} from './store/auth-store';
 import {useCart} from './store/cart-store';
@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
+import {doc, getDoc} from "firebase/firestore";
 
 const App = () => {
   // Задаём юзера
@@ -16,11 +17,23 @@ const App = () => {
 
   // Подгрузка данных
   const setIsUserAuth = useAuth(state => state.setIsUserAuth);
+  const setUserData = useAuth(state => state.setUserData);
   const isUserAuth = useAuth(state => state.isUserAuth);
   const setCartProductsAuthUser = useCart(state => state.setCartProductsAuthUser);
 
+
   // Для прогрузки
   const setIsUserLoading = useAuth(state => state.setIsUserLoading);
+
+  const getUserCart = async (uId) => {
+    try {
+      const docRef = doc(dbFirestore, 'carts', uId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.data().cart) {
+        setCartProductsAuthUser(docSnap.data().cart);
+      }
+    } catch (error) {}
+  };
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -32,8 +45,10 @@ const App = () => {
           token: user.accessToken,
         });
         setIsUserAuth(true);
+        getUserCart(user.uid);
       } else {
         setIsUserAuth(false);
+        setUserData({});
       }
       setIsUserLoading(true);
     });

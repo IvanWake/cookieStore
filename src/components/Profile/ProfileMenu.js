@@ -18,9 +18,9 @@ const ProfileMenu = (props) => {
 
     const handleLogOut = () => {
         setIsUserAuth(false);
+        signOut(auth);
         setUserData({});
         setCartProductsAuthUser([]);
-        signOut(auth);
     }
 
     return (
@@ -41,7 +41,13 @@ const ProfileMenu = (props) => {
             </div>
             <div className={profile.link}><FontAwesomeIcon icon={faListUl} className={profile.i} /> My orders</div>
             <div className={profile.link}><FontAwesomeIcon icon={faMapLocationDot} className={profile.i} /> My addresses</div>
-            <div className={profile.link} onClick={handleLogOut}><FontAwesomeIcon icon={faArrowRightFromBracket} className={profile.i} /> Log out</div>
+            <div
+                className={profile.link}
+                onClick={handleLogOut}
+            >
+                    <FontAwesomeIcon icon={faArrowRightFromBracket} className={profile.i} />
+                    Log out
+            </div>
         </motion.div>
     );
 }

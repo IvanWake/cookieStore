@@ -1,9 +1,11 @@
 import {useEffect, useState} from 'react';
 import {
+    deleteUserCart,
     fetchLocalProducts,
     setProducts,
     setUserCart, updateUserCart
 } from '../../service/cart';
+import { auth } from "../../firebase";
 import {useAuth} from '../../store/auth-store';
 import {useCart} from '../../store/cart-store';
 import {motion} from 'framer-motion';
@@ -22,8 +24,13 @@ const Product = (props) => {
     const { isUserAuth, userData} = useAuth();
 
     useEffect(() => {
-        if (cartProductsAuthUser.length > 0) {
-            updateUserCart(userData.id, cartProductsAuthUser);
+        const user = auth.currentUser;
+        if (user) {
+            if (cartProductsAuthUser.length > 0) {
+                updateUserCart(userData.id, cartProductsAuthUser);
+            } else {
+                deleteUserCart();
+            }
         }
     }, [cartProductsAuthUser])
 

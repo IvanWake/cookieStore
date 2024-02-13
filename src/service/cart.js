@@ -1,4 +1,4 @@
-import { updateDoc, doc, setDoc } from "firebase/firestore";
+import { updateDoc, doc, setDoc, deleteDoc } from "firebase/firestore";
 import { dbFirestore } from "../firebase";
 
 export const fetchLocalProducts = () => {
@@ -81,6 +81,15 @@ export const updateUserCart = async (id, items) => {
     try {
         const cartDoc = doc(dbFirestore, 'carts', id);
         await updateDoc(cartDoc, userCart);
+    } catch (error) {
+        console.log(error)
+    }
+};
+
+export const deleteUserCart = async (id) => {
+    try {
+        const cartDoc = doc(dbFirestore, 'carts', id);
+        await deleteDoc(cartDoc);
     } catch (error) {
         console.log(error)
     }
