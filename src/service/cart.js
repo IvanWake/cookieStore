@@ -20,7 +20,7 @@ export const getTotalPrice = (productsList) => {
     let totalPrice = 0;
 
     for (const key in productsList) {
-        totalPrice += productsList[key].amount * productsList[key].price;
+        totalPrice += productsList[key]?.amount * productsList[key]?.price;
     }
 
     return {
@@ -32,7 +32,7 @@ export const getTotalAmount = (productsList) => {
     let totalAmount = 0;
 
     for (const key in productsList) {
-        totalAmount += productsList[key].amount;
+        totalAmount += productsList[key]?.amount;
     }
 
     return {

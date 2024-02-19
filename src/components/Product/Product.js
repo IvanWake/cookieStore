@@ -43,7 +43,6 @@ const Product = (props) => {
             amount: productCounter,
             price: props.price,
             desc: props.description,
-            total: props.price * productCounter,
             chlien: 1,
         }
 

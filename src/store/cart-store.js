@@ -1,5 +1,4 @@
 import {create} from 'zustand';
-import {updateUserCart} from "../service/cart";
 
 export const useCart = create(set => ({
     isCartVisible: false,
@@ -48,25 +47,24 @@ export const useCart = create(set => ({
         return {cartProductsAuthUser: updatedProducts};
     }),
     removeCartProductAuthUser: (item) => set(state => {
-        return {cartProductsAuthUser: state.cartProductsAuthUser.filter(product => product.name !== item.name)}
+        return { cartProductsAuthUser: state.cartProductsAuthUser.filter(product => product.name !== item.name) }
     }),
-    increaseCounterAuthUser: (item) => set(state => {
-        return {
-            cartProductsAuthUser: state.cartProductsAuthUser.map(product => {
-                if (product.name === item.name) {
-                    return { ...product, amount: product.amount + 1 }
-                }
-            })
-        }
-    }),
+    increaseCounterAuthUser: (item) => set((state) => ({
+        cartProductsAuthUser: state.cartProductsAuthUser.map(product => {
+            if (product.name === item.name) {
+                return { ...product, amount: product.amount + 1 }
+            }
+            return product;
+        })
+    })),
     decreaseCounterAuthUser: (item) => set((state) => ({
             cartProductsAuthUser: state.cartProductsAuthUser.map(product => {
-                if (product.name === item.name) {
+                if (product.name === item.name && item.amount > 1) {
                     return { ...product, amount: product.amount - 1 }
                 }
                 return product;
             })
-        })),
+    })),
     setCartProductsAuthUser: (item) => set(state => {
         return {cartProductsAuthUser: item};
     }),

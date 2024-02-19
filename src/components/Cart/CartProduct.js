@@ -24,7 +24,7 @@ const CartProduct = (props) => {
 
     const increaseCounterHandler = () => {
         if (isUserAuth) {
-            increaseCounterAuthUser(item.name);
+            increaseCounterAuthUser(item);
         } else {
             props.onIncrease(item);
         }

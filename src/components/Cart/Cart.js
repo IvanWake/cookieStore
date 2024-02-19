@@ -35,7 +35,7 @@ const Cart = () => {
             <button className={cart.button}>Take away</button>
           </div>
           <AnimatePresence>
-            <CartProductsList cartItems={ isUserAuth ? cartProductsAuthUser : cartItems } />
+            <CartProductsList cartProducts={ isUserAuth ? cartProductsAuthUser : cartItems } />
           </AnimatePresence>
           <CartFooter/>
         </div>

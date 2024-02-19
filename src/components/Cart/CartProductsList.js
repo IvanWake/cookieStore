@@ -1,15 +1,15 @@
-import {useCart} from '../../store/cart-store';
-import {AnimatePresence} from 'framer-motion';
-import {setProducts} from '../../service/cart';
-import {cart} from '../../store/styles';
+import { useCart } from '../../store/cart-store';
+import { AnimatePresence } from 'framer-motion';
+import { setProducts } from '../../service/cart';
+import { cart } from '../../store/styles';
 import CartProduct from './CartProduct';
 
 const CartProductsList = (props) => {
 
-  const cartProductsLocal = useCart(state => state.cartProductsLocalHandler);
+  const { cartProductsLocal } = useCart();
 
   const increaseHandler = (updatingItem) => {
-    setProducts(props.cartItems, updatingItem, updatingItem.id, 1);
+    setProducts(props.cartProducts, updatingItem, updatingItem.id, 1);
     cartProductsLocal();
   };
 
@@ -17,7 +17,7 @@ const CartProductsList = (props) => {
     if (updatingItem.amount === 1) {
       return;
     }
-    setProducts(props.cartItems, updatingItem, updatingItem.id, -1);
+    setProducts(props.cartProducts, updatingItem, updatingItem.id, -1);
     cartProductsLocal();
   };
 
@@ -30,7 +30,7 @@ const CartProductsList = (props) => {
       <div className={cart.productList}>
         <AnimatePresence>
           {
-            props.cartItems?.map(product => (
+            props.cartProducts?.map(product => (
                 <CartProduct
                     key={product.id}
                     id={product.id}
