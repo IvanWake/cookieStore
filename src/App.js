@@ -48,7 +48,6 @@ const App = () => {
         getUserCart(user.uid);
       } else {
         setIsUserAuth(false);
-        setUserData({});
       }
       setIsUserLoading(true);
     });

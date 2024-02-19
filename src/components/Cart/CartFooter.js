@@ -7,7 +7,7 @@ import { cart } from "../../store/styles";
 const CartFooter = () => {
     const [totalPrice, setTotalPrice] = useState()
     const isUserAuth = useAuth(state => state.isUserAuth);
-    const cartProductsAuthUser = useCart(state => state.cartProductsAuthUser)
+    const { cartProductsAuthUser, cartProductsLocal} = useCart();
 
     useEffect(() => {
         if (isUserAuth) {
@@ -15,7 +15,7 @@ const CartFooter = () => {
         } else {
             setTotalPrice(`${getTotalPrice(fetchLocalProducts().filteredProducts).totalPrice.toFixed(2)}`);
         }
-    }, [cartProductsAuthUser])
+    }, [cartProductsAuthUser, cartProductsLocal, isUserAuth])
 
     return (
         <div className={cart.footer}>

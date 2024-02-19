@@ -3,7 +3,7 @@ import {useAuth} from '../../store/auth-store';
 import {useCart} from '../../store/cart-store';
 import {cart} from '../../store/styles';
 import {motion, AnimatePresence} from 'framer-motion';
-import {fetchLocalProducts, updateUserCart} from '../../service/cart';
+import { fetchLocalProducts } from '../../service/cart';
 import CartFooter from './CartFooter';
 import CartProductsList from './CartProductsList';
 

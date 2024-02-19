@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import Header from '../components/Layout/Header';
-import { auth } from '../firebase';
+import {auth, dbFirestore} from '../firebase';
 import { useAuth } from '../store/auth-store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -12,12 +11,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Link, useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import {doc, getDoc} from "firebase/firestore";
+import {useCart} from "../store/cart-store";
 
 const LogIn = () => {
     const [passIsVisible, setPassIsVisible] = useState(false);
     const [eyeIcon, setEyeIcon] = useState(faEye);
     const [logInError, setLogInError] = useState('');
     const isUserAuth = useAuth(state => state.isUserAuth);
+    const { setCartProductsAuthUser } = useCart();
 
     const setUser = useAuth(state => state.setUserData);
     const setIsUserAuth = useAuth(state => state.setIsUserAuth);
@@ -26,6 +28,16 @@ const LogIn = () => {
     useEffect(() => {
         isUserAuth && push("/home");
     }, [isUserAuth]);
+
+    const getUserCart = async (uId) => {
+        try {
+            const docRef = doc(dbFirestore, 'carts', uId);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.data().cart) {
+                setCartProductsAuthUser(docSnap.data().cart);
+            }
+        } catch (error) {}
+    };
 
     const {
         register,
@@ -45,6 +57,7 @@ const LogIn = () => {
                     token: user.accessToken,
                 });
                 setIsUserAuth(true);
+                getUserCart(user.uid)
                 reset();
                 push('/home');
             }).catch(() => { setLogInError('Incorrect email or password') })
