@@ -47,21 +47,21 @@ export const useCart = create(set => ({
 
         return {cartProductsAuthUser: updatedProducts};
     }),
-    removeCartProductAuthUser: (itemName) => set(state => {
-        return {cartProductsAuthUser: state.cartProductsAuthUser.filter(product => product.name !== itemName)}
+    removeCartProductAuthUser: (item) => set(state => {
+        return {cartProductsAuthUser: state.cartProductsAuthUser.filter(product => product.name !== item.name)}
     }),
-    increaseCounterAuthUser: (itemName) => set(state => {
+    increaseCounterAuthUser: (item) => set(state => {
         return {
             cartProductsAuthUser: state.cartProductsAuthUser.map(product => {
-                if (product.name == itemName) {
-                    return {...product, amount: product.amount + 1}
+                if (product.name === item.name) {
+                    return { ...product, amount: product.amount + 1 }
                 }
             })
         }
     }),
-    decreaseCounterAuthUser: (itemName) => set((state) => ({
+    decreaseCounterAuthUser: (item) => set((state) => ({
             cartProductsAuthUser: state.cartProductsAuthUser.map(product => {
-                if (product.name == itemName) {
+                if (product.name === item.name) {
                     return { ...product, amount: product.amount - 1 }
                 }
                 return product;
