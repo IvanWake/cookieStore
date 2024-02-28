@@ -26,7 +26,7 @@ const CartProduct = (props) => {
         if (isUserAuth) {
             increaseCounterAuthUser(item);
         } else {
-            props.onIncrease(item);
+            props?.onIncrease(item);
         }
 
     };
@@ -35,7 +35,7 @@ const CartProduct = (props) => {
         if (isUserAuth) {
             decreaseCounterAuthUser(item);
         } else {
-            props.onDecrease(item);
+            props?.onDecrease(item);
         }
     };
 
@@ -43,7 +43,7 @@ const CartProduct = (props) => {
         if (isUserAuth) {
             removeCartProductAuthUser(item);
         } else {
-            props.onRemoveProduct(item)
+            props?.onRemoveProduct(item);
         }
     };
 

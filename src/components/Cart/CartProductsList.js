@@ -6,11 +6,11 @@ import CartProduct from './CartProduct';
 
 const CartProductsList = (props) => {
 
-  const { cartProductsLocal } = useCart();
+  const { cartProductsLocal, cartProductsLocalHandler } = useCart();
 
   const increaseHandler = (updatingItem) => {
     setProducts(props.cartProducts, updatingItem, updatingItem.id, 1);
-    cartProductsLocal();
+    cartProductsLocalHandler();
   };
 
   const decreaseHandler = (updatingItem) => {
@@ -18,12 +18,12 @@ const CartProductsList = (props) => {
       return;
     }
     setProducts(props.cartProducts, updatingItem, updatingItem.id, -1);
-    cartProductsLocal();
+    cartProductsLocalHandler();
   };
 
   const removeProductHandler = (removingItem) => {
     localStorage.removeItem(removingItem.id);
-    cartProductsLocal();
+    cartProductsLocalHandler();
   };
 
   return (
