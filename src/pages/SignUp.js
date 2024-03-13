@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../store/auth-store';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from '../firebase';
 import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -50,6 +51,11 @@ const SignUp = () => {
     const onHideHandler = () => {
         setPassIsVisible(prevState => !prevState);
         setEyeIcon(passIsVisible ? faEye : faEyeSlash)
+    }
+
+    const googleAuthHandler = () => {
+        signInWithPopup(auth, provider)
+            .then(data => console.log(data));
     }
 
     return (
@@ -129,13 +135,20 @@ const SignUp = () => {
                                 <div className="mb-3 flex flex-wrap content-center">
                                     <input id="remember" type="checkbox" className="mr-1 checked:bg-[#ff9f5a]" />
                                     <label htmlFor="remember" className="mr-auto text-xs font-semibold">I agree privacy policy</label>
-                                    {/*<button className="text-xs font-semibold text-[#ff9f5a]">Forgot password?</button>*/}
                                 </div>
 
                                 <div className="mb-3">
                                     <button
                                         className="mb-1.5 block w-full text-center text-white bg-[#ff9f5a] hover:bg-[#ff9f5a80] transition ease-in duration-150 active:scale-95 px-2 py-1.5 rounded-md disabled:bg-[#ff9f5a80] disabled:cursor-not-allowed disabled:active:scale-100"
                                         disabled={errors.signUpEmail || errors.signUpPass}>Sign Up
+                                    </button>
+                                </div>
+                                <div className="mb-3">
+                                    <button
+                                        type="button"
+                                        onClick={googleAuthHandler}
+                                        className="mb-1.5 block w-full text-center text-white bg-[#ff9f5a] hover:bg-[#ff9f5a80] transition ease-in duration-150 active:scale-95 px-2 py-1.5 rounded-md disabled:bg-[#ff9f5a80] disabled:cursor-not-allowed disabled:active:scale-100"
+                                        >Google Auth
                                     </button>
                                 </div>
                             </form>
