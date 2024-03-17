@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import googleIcon from '../assets/google.svg';
 
 const SignUp = () => {
     const [passIsVisible, setPassIsVisible] = useState(false);
@@ -67,7 +68,6 @@ const SignUp = () => {
         >
             {isUserAuth && <Redirect to="/home" />}
             <div className="flex flex-wrap min-h-screen w-full content-center justify-center bg-gray-200 py-10">
-
                 {/* Login component */}
                 <div className="flex shadow-md">
                     {/* SignUp banner */}
@@ -144,12 +144,13 @@ const SignUp = () => {
                                     </button>
                                 </div>
                                 <div className="mb-3">
-                                    <button
-                                        type="button"
+                                    <div
                                         onClick={googleAuthHandler}
-                                        className="mb-1.5 block w-full text-center text-white bg-[#ff9f5a] hover:bg-[#ff9f5a80] transition ease-in duration-150 active:scale-95 px-2 py-1.5 rounded-md disabled:bg-[#ff9f5a80] disabled:cursor-not-allowed disabled:active:scale-100"
-                                        >Google Auth
-                                    </button>
+                                        className="mb-1.5 block w-full text-center cursor-pointer hover:text-white text-[#ff9f5a] justify-center space-x-2 bg-[#fff] hover:bg-[#ff9f5a80] transition ease-in duration-150 active:scale-95 px-2 py-1.5 flex rounded-md disabled:bg-[#ff9f5a80] disabled:cursor-not-allowed disabled:active:scale-100"
+                                        >
+                                        <img src={googleIcon} alt="google" width="20" className="fill-white"/>
+                                        <span className="font-medium">Google Auth</span>
+                                    </div>
                                 </div>
                             </form>
 

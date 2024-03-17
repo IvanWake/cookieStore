@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import {auth, dbFirestore} from '../firebase';
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import googleIcon from '../assets/google.svg';
+import {auth, dbFirestore, provider} from '../firebase';
 import { useAuth } from '../store/auth-store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link, useHistory } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import {doc, getDoc} from "firebase/firestore";
+import { useCart } from "../store/cart-store";
 import {
     faArrowLeft,
     faEye,
     faEyeSlash,
 } from '@fortawesome/free-solid-svg-icons';
-import { Link, useHistory } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import {doc, getDoc} from "firebase/firestore";
-import {useCart} from "../store/cart-store";
 
 const LogIn = () => {
     const [passIsVisible, setPassIsVisible] = useState(false);
@@ -72,6 +73,11 @@ const LogIn = () => {
     const onHideHandler = () => {
         setPassIsVisible(prevState => !prevState);
         setEyeIcon(passIsVisible ? faEye : faEyeSlash)
+    }
+
+    const googleAuthHandler = () => {
+        signInWithPopup(auth, provider)
+        .then(data => console.log(data));
     }
 
     return (
@@ -180,6 +186,15 @@ const LogIn = () => {
                                             disabled={errors.loginEmail ||
                                                 errors.loginPass}>Log In
                                         </button>
+                                    </div>
+                                    <div className="mb-3">
+                                        <div
+                                            onClick={googleAuthHandler}
+                                            className="mb-1.5 block w-full text-center cursor-pointer hover:text-white text-[#ff9f5a] justify-center space-x-2 bg-[#fff] hover:bg-[#ff9f5a80] transition ease-in duration-150 active:scale-95 px-2 py-1.5 flex rounded-md disabled:bg-[#ff9f5a80] disabled:cursor-not-allowed disabled:active:scale-100"
+                                        >
+                                            <img src={googleIcon} alt="google" width="20" className="fill-white"/>
+                                            <span className="font-medium">Google Auth</span>
+                                        </div>
                                     </div>
                                 </form>
 
