@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import googleIcon from '../assets/google.svg';
-import {auth, dbFirestore, provider} from '../firebase';
+import { auth, dbFirestore, provider } from '../firebase';
 import { useAuth } from '../store/auth-store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useHistory } from 'react-router-dom';
@@ -174,10 +174,12 @@ const LogIn = () => {
                                         <label htmlFor="remember"
                                                className="mr-auto text-xs font-semibold">Remember
                                             me</label>
-                                        <button
-                                            className="text-xs font-semibold text-[#ff9f5a]">Forgot
-                                            password?
-                                        </button>
+                                        <Link to="/reset">
+                                            <div
+                                                className="text-xs font-semibold text-[#ff9f5a]">Forgot
+                                                password?
+                                            </div>
+                                        </Link>
                                     </div>
 
                                     <div className="mb-3">

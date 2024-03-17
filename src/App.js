@@ -5,11 +5,12 @@ import {onAuthStateChanged} from 'firebase/auth';
 import {useAuth} from './store/auth-store';
 import {useCart} from './store/cart-store';
 import {AnimatePresence} from 'framer-motion';
+import {doc, getDoc} from "firebase/firestore";
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
-import {doc, getDoc} from "firebase/firestore";
+import ForgotPassword from './pages/ForgotPassword';
 
 const App = () => {
   // Задаём юзера
@@ -67,6 +68,9 @@ const App = () => {
           </Route>
           <Route path="/signup" exact>
             <AnimatePresence><SignUp/></AnimatePresence>
+          </Route>
+          <Route path="/reset" exact>
+            <AnimatePresence><ForgotPassword/></AnimatePresence>
           </Route>
           <Route path="*">
             <NotFound/>
