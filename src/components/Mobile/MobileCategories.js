@@ -33,7 +33,7 @@ const MobileCategories = () => {
   const returnCategoryNameHandler = (categoryName) => { categoryState(categoryName) };
 
   return (
-      <div className="py-4 px-2">
+      <div className="py-4 px-2 mt-[4rem]">
         <div className="font-extrabold text-[2.5rem]">{selectedCategory}</div>
         <div className={category.categoryDiv}>
           {

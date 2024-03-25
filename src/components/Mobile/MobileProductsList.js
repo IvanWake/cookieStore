@@ -60,7 +60,7 @@ const MobileProductList = () => {
   }
 
   return (
-      <div className={products.productList + " justify-center"}>
+      <div className={products.productList + " justify-center pb-[4rem]"}>
         <AnimatePresence>
           {content}
         </AnimatePresence>

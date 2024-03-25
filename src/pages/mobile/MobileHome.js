@@ -1,4 +1,3 @@
-import Categories from '../../components/Categories/Categories';
 import MobileCategories from '../../components/Mobile/MobileCategories';
 import MobileFooter from '../../components/Mobile/MobileFooter';
 import MobileHeader from '../../components/Mobile/MobileHeader';
