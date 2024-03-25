@@ -1,15 +1,15 @@
 export const header = {
-    header: 'z-50 flex fixed top-0 left-0 right-0 bg-white shadow-[0px_8px_16px_-8px_#00000020]', //bg-[#ffcca7]
+    header: 'z-50 flex fixed top-0 left-0 right-0 bg-[#ffcca7] shadow-[0px_8px_16px_-8px_#00000020]', //
     headerContainer: 'flex items-center justify-between mx-auto p-4 w-full max-w-[1400px]',
     headerDiv: 'flex items-center gap-4 max-h-[32px] ',
     hr: 'w-px h-[20px] bg-[#ff9f5a]',
-    search: 'flex items-center relative py-2 px-4 pl-8 rounded-[0.6rem] bg-white max-h-[32px] border-2 border-black',
+    search: 'flex items-center relative py-2 px-4 pl-8 rounded-[0.6rem] bg-white max-h-[32px]',
     searchI: 'text-black/40 absolute left-2',
     searchInput: 'text-sm bg-none border-none focus:outline-none',
     button: 'flex relative items-center gap-2 py-2 px-4 rounded-[0.6rem] bg-[#ff9f5a] max-h-[32px] text-white border-none transition ease-in duration-150 active:scale-95 hover:bg-[#ff9f5a80]',
     profile: 'relative flex items-center gap-4',
     profileImage: 'cursor-pointer rounded-full',
-    cartBadge: 'absolute top-[-12px] right-[-12px] py-[3px] px-[8px] bg-[#FF9F5A] rounded-full border-2 border-white text-white text-xs',
+    cartBadge: 'absolute top-[-12px] right-[-12px] py-[3px] px-[8px] bg-[#FF9F5A] rounded-full border-2 border-[#ffcca7] text-white text-xs',
 };
 
 export const auth = {
