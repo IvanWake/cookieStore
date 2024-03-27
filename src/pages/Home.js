@@ -24,7 +24,7 @@ const Home = () => {
                     <ProductList />
                 </MainWrapper>
                 <AnimatePresence>
-                    {isCartVisible && <Cart />}
+                    { isCartVisible && <Cart /> }
                 </AnimatePresence>
             </Main>
         </motion.div>

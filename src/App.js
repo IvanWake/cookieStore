@@ -12,6 +12,7 @@ import LogIn from './pages/LogIn';
 import SignUp from './pages/SignUp';
 import ForgotPassword from './pages/ForgotPassword';
 import MobileHome from './pages/mobile/MobileHome';
+import MobileCart from './pages/mobile/MobileCart';
 
 const App = () => {
   // Задаём юзера
@@ -66,6 +67,9 @@ const App = () => {
                 </Route>
                 <Route path="/home" exact>
                   <AnimatePresence><MobileHome/></AnimatePresence>
+                </Route>
+                <Route path="/cart" exact>
+                  <AnimatePresence><MobileCart /></AnimatePresence>
                 </Route>
               </Switch>
               :
