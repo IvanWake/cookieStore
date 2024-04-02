@@ -1,14 +1,14 @@
-import Cart from '../../components/Cart/Cart';
 import MobileFooter from '../../components/Mobile/MobileFooter';
-import MobileHeader from '../../components/Mobile/MobileHeader';
+import MobileCartFooter from '../../components/Mobile/MobileCartFooter';
 
 const MobileCart = () => {
-  return (
-      <>
-        <Cart/>
-        <MobileFooter/>
-      </>
-  );
+    return (
+        <div>
+          <h1>Cart tut budet</h1>
+            <MobileCartFooter />
+          <MobileFooter />
+        </div>
+    );
 }
 
 export default MobileCart;

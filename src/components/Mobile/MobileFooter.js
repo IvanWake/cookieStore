@@ -22,15 +22,21 @@ const MobileFooter = () => {
             <FontAwesomeIcon icon={faCartShopping} size="xl"/>
           </div>
           </Link>
-          <div className="text-white active:scale-90" id="cart">
-            <FontAwesomeIcon icon={faMapLocationDot} size="xl"/>
-          </div>
-          <div className="text-white active:scale-90" id="cart">
-            <FontAwesomeIcon icon={faListUl} size="xl"/>
-          </div>
+          <Link to={'/addresses'}>
+            <div className="text-white active:scale-90" id="cart">
+              <FontAwesomeIcon icon={faMapLocationDot} size="xl"/>
+            </div>
+          </Link>
+          <Link to={'/orders'}>
+            <div className="text-white active:scale-90" id="cart">
+              <FontAwesomeIcon icon={faListUl} size="xl"/>
+            </div>
+          </Link>
+          <Link to={'/profile'}>
             <div className="text-white active:scale-90" id="cart">
               <FontAwesomeIcon icon={faUser} size="xl"/>
             </div>
+          </Link>
         </div>
       </div>
   );

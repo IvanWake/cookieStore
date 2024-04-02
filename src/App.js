@@ -1,11 +1,13 @@
-import {useEffect} from 'react';
-import {Route, Switch, Redirect} from 'react-router-dom';
-import {auth, dbFirestore} from './firebase';
-import {onAuthStateChanged} from 'firebase/auth';
-import {useAuth} from './store/auth-store';
-import {useCart} from './store/cart-store';
-import {AnimatePresence} from 'framer-motion';
-import {doc, getDoc} from 'firebase/firestore';
+import { useEffect } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { auth, dbFirestore } from './firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import MobileAddresses from './pages/mobile/MobileAddresses';
+import MobileProfile from './pages/mobile/MobileProfile';
+import { useAuth } from './store/auth-store';
+import { useCart } from './store/cart-store';
+import { AnimatePresence } from 'framer-motion';
+import { doc, getDoc } from 'firebase/firestore';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import LogIn from './pages/LogIn';
@@ -13,6 +15,7 @@ import SignUp from './pages/SignUp';
 import ForgotPassword from './pages/ForgotPassword';
 import MobileHome from './pages/mobile/MobileHome';
 import MobileCart from './pages/mobile/MobileCart';
+import MobileOrders from './pages/mobile/MobileOrders';
 
 const App = () => {
   // Задаём юзера
@@ -35,7 +38,8 @@ const App = () => {
       if (docSnap.data().cart) {
         setCartProductsAuthUser(docSnap.data().cart);
       }
-    } catch (error) {}
+    } catch (error) {
+    }
   };
 
   useEffect(() => {
@@ -43,9 +47,7 @@ const App = () => {
       setIsUserLoading(false);
       if (user) {
         setUser({
-          email: user.email,
-          id: user.uid,
-          token: user.accessToken,
+          email: user.email, id: user.uid, token: user.accessToken,
         });
         setIsUserAuth(true);
         getUserCart(user.uid);
@@ -56,48 +58,55 @@ const App = () => {
     });
   }, []);
 
-  return (
-      <>
+  return (<>
 
-        {
-          window.innerWidth <= 768 ?
-              <Switch>
-                <Route path="/" exact>
-                  <Redirect to="/home"/>
-                </Route>
-                <Route path="/home" exact>
-                  <AnimatePresence><MobileHome/></AnimatePresence>
-                </Route>
-                <Route path="/cart" exact>
-                  <AnimatePresence><MobileCart /></AnimatePresence>
-                </Route>
-              </Switch>
-              :
-              <Switch>
-                <Route path="/" exact>
-                  <Redirect to="/home"/>
-                </Route>
-                <Route path="/home" exact>
-                  <AnimatePresence><Home/></AnimatePresence>
-                </Route>
-                <Route path="/login" exact>
-                  <AnimatePresence><LogIn/></AnimatePresence>
-                </Route>
-                <Route path="/signup" exact>
-                  <AnimatePresence><SignUp/></AnimatePresence>
-                </Route>
-                <Route path="/reset" exact>
-                  <AnimatePresence><ForgotPassword/></AnimatePresence>
-                </Route>
-                <Route path="*">
-                  <NotFound/>
-                </Route>
-              </Switch>
+    {window.innerWidth <= 768 ? <Switch>
+      <Route path="/" exact>
+        <Redirect to="/home"/>
+      </Route>
+      <Route path="/home" exact>
+        <AnimatePresence><MobileHome/></AnimatePresence>
+      </Route>
+      <Route path="/cart" exact>
+        <AnimatePresence><MobileCart/></AnimatePresence>
+      </Route>
+      <Route path="/addresses" exact>
+        <AnimatePresence><MobileAddresses/></AnimatePresence>
+      </Route>
+      <Route path="/orders" exact>
+        <AnimatePresence><MobileOrders/></AnimatePresence>
+      </Route>
+      <Route path="/profile" exact>
+        <AnimatePresence><MobileProfile/></AnimatePresence>
+      </Route>
 
-        }
+      <Route path="*">
+        <NotFound/>
+      </Route>
+    </Switch> : <Switch>
+      <Route path="/" exact>
+        <Redirect to="/home"/>
+      </Route>
+      <Route path="/home" exact>
+        <AnimatePresence><Home/></AnimatePresence>
+      </Route>
+      <Route path="/login" exact>
+        <AnimatePresence><LogIn/></AnimatePresence>
+      </Route>
+      <Route path="/signup" exact>
+        <AnimatePresence><SignUp/></AnimatePresence>
+      </Route>
+      <Route path="/reset" exact>
+        <AnimatePresence><ForgotPassword/></AnimatePresence>
+      </Route>
+      <Route path="*">
+        <NotFound/>
+      </Route>
+    </Switch>
 
-      </>
-  );
+    }
+
+  </>);
 };
 
 export default App;
