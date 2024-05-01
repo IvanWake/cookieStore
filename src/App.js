@@ -1,13 +1,11 @@
 import { useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { auth, dbFirestore } from './firebase';
+import { doc, getDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
-import MobileAddresses from './pages/mobile/MobileAddresses';
-import MobileProfile from './pages/mobile/MobileProfile';
 import { useAuth } from './store/auth-store';
 import { useCart } from './store/cart-store';
 import { AnimatePresence } from 'framer-motion';
-import { doc, getDoc } from 'firebase/firestore';
 import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import LogIn from './pages/LogIn';
@@ -16,6 +14,8 @@ import ForgotPassword from './pages/ForgotPassword';
 import MobileHome from './pages/mobile/MobileHome';
 import MobileCart from './pages/mobile/MobileCart';
 import MobileOrders from './pages/mobile/MobileOrders';
+import MobileAddresses from './pages/mobile/MobileAddresses';
+import MobileProfile from './pages/mobile/MobileProfile';
 
 const App = () => {
   // Задаём юзера
