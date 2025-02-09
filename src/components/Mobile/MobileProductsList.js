@@ -14,7 +14,7 @@ const MobileProductList = () => {
   const { selectedCategory, sortMethod } = useProducts();
   const { setProducts, setProductsList } = useProducts();
   const productsList = useProducts(state => state.products);
-  const urlProducts = "https://img.cookiestore.ru/";
+  const urlProducts = "https://c.flashwork.ru/";
 
   const fetchProducts = () => {
     setIsProductsLoading(true);
