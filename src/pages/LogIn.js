@@ -228,7 +228,7 @@ const LogIn = () => {
                             className="flex flex-wrap content-center justify-center overflow-hidden rounded-r-md w-[24rem] h-[32rem]">
                             <img
                                 className="w-full bg-center bg-no-repeat bg-cover rounded-r-md -scale-x-100"
-                                src="https://img.cookiestore.ru/cat.jpg"
+                                src="https://c.flashwork.ru/cat.jpg"
                                 alt="img"/>
                         </div>
                     </div>
