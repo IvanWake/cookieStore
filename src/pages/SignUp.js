@@ -72,7 +72,7 @@ const SignUp = () => {
                 <div className="flex shadow-md">
                     {/* SignUp banner */}
                     <div className="flex flex-wrap content-center justify-center overflow-hidden rounded-l-md w-[24rem] h-[32rem]">
-                        <img className="w-full bg-center bg-no-repeat bg-cover rounded-l-md" src="https://img.cookiestore.ru/cat.jpg" alt='img' />
+                        <img className="w-full bg-center bg-no-repeat bg-cover rounded-l-md" src="https://c.flashwork.ru/cat.jpg" alt='img' />
                     </div>
                     {/* Login form */}
                     <div className="flex flex-wrap content-center justify-center rounded-r-md bg-white w-[24rem] h-[32rem]">
