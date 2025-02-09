@@ -21,7 +21,7 @@ const ProductList = () => {
     const productsList = useProducts(state => state.products);
     const setProductsList = useProducts(state => state.setProductsList);
     
-    const urlProducts = "https://img.cookiestore.ru/";
+    const urlProducts = "https://c.flashwork.ru/";
 
     const fetchProducts = () => {
         setIsProductsLoading(true);
